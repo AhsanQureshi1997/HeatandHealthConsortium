@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>HHRIC — Heat & Health Resilience Innovation Consortium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #F5F2EC;
+  --surface: #FFFFFF;
+  --surface2: #F0ECE4;
+  --border: #E0D9CE;
+  --border2: #C8BFB2;
+  --text: #1A1612;
+  --text2: #5A5248;
+  --text3: #8C847A;
+  --accent: #C4581A;
+  --accent-light: #FAF0E8;
+  --accent-dark: #8F3C0C;
+  --blue: #1B5C8A;
+  --blue-light: #E8F2FA;
+  --green: #2E6E45;
+  --green-light: #E8F5EE;
+  --amber: #A06010;
+  --amber-light: #FDF3E0;
+  --red: #B33030;
+  --red-light: #FBE8E8;
+  --purple: #5A3A8A;
+  --purple-light: #F0EBF9;
+  --teal: #1A6B6B;
+  --teal-light: #E4F4F4;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.06);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background: var(--text);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  z-index: 100;
+  overflow-y: auto;
+}
+.sidebar-header {
+  padding: 28px 24px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.logo-mark {
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.logo-mark svg { width: 18px; height: 18px; }
+.logo-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.logo-sub {
+  font-size: 10px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.sidebar-tagline {
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.5;
+}
+
+.sidebar-nav { padding: 16px 12px; flex: 1; }
+.nav-section-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0 12px;
+  margin-bottom: 6px;
+  margin-top: 16px;
+}
+.nav-section-label:first-child { margin-top: 0; }
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+  color: rgba(255,255,255,0.55);
+  font-size: 13.5px;
+  font-weight: 400;
+  user-select: none;
+  margin-bottom: 2px;
+}
+.nav-item:hover { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.85); }
+.nav-item.active { background: var(--accent); color: #fff; font-weight: 500; }
+.nav-item .nav-icon {
+  width: 18px; height: 18px;
+  opacity: 0.7;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+}
+.nav-item.active .nav-icon { opacity: 1; }
+.nav-badge {
+  margin-left: auto;
+  font-size: 10px;
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.6);
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-weight: 500;
+}
+.nav-item.active .nav-badge { background: rgba(255,255,255,0.2); color: #fff; }
+
+.sidebar-footer {
+  padding: 16px 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.user-card {
+  display: flex; align-items: center; gap: 10px;
+}
+.avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600; color: #fff; flex-shrink: 0;
+}
+.user-name { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.8); }
+.user-role { font-size: 11px; color: rgba(255,255,255,0.35); }
+
+/* MAIN */
+.main { margin-left: 260px; flex: 1; }
+.page { display: none; padding: 36px 40px; max-width: 1100px; }
+.page.active { display: block; }
+
+/* TOPBAR */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 32px;
+}
+.page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.page-subtitle { font-size: 13px; color: var(--text3); margin-top: 3px; }
+.topbar-actions { display: flex; align-items: center; gap: 10px; }
+
+/* CHIPS & BADGES */
+.chip {
+  font-size: 11px; font-weight: 500;
+  padding: 4px 10px; border-radius: 20px;
+  display: inline-flex; align-items: center; gap: 4px;
+  white-space: nowrap;
+}
+.chip-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.chip-red { background: var(--red-light); color: var(--red); }
+.chip-red .chip-dot { background: var(--red); }
+.chip-amber { background: var(--amber-light); color: var(--amber); }
+.chip-amber .chip-dot { background: var(--amber); }
+.chip-green { background: var(--green-light); color: var(--green); }
+.chip-green .chip-dot { background: var(--green); }
+.chip-blue { background: var(--blue-light); color: var(--blue); }
+.chip-blue .chip-dot { background: var(--blue); }
+.chip-purple { background: var(--purple-light); color: var(--purple); }
+.chip-teal { background: var(--teal-light); color: var(--teal); }
+.chip-gray { background: var(--surface2); color: var(--text2); }
+.chip-accent { background: var(--accent-light); color: var(--accent-dark); }
+
+/* BUTTONS */
+.btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 16px; border-radius: var(--radius);
+  font-size: 13px; font-weight: 500; cursor: pointer;
+  border: 1.5px solid var(--border2);
+  background: var(--surface); color: var(--text2);
+  transition: all 0.15s; text-decoration: none; white-space: nowrap;
+  font-family: 'DM Sans', sans-serif;
+}
+.btn:hover { background: var(--surface2); border-color: var(--text3); }
+.btn-primary {
+  background: var(--accent); color: #fff; border-color: var(--accent);
+}
+.btn-primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+.btn-sm { padding: 5px 12px; font-size: 12px; }
+.btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* CARDS */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.card-header {
+  padding: 18px 22px 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.card-title { font-size: 13px; font-weight: 600; color: var(--text); letter-spacing: 0.01em; }
+.card-body { padding: 18px 22px; }
+.card-body-flush { }
+
+/* METRIC CARDS */
+.metrics-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 22px; }
+.metric-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.metric-card:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.metric-label { font-size: 11px; font-weight: 500; color: var(--text3); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 8px; }
+.metric-value { font-size: 30px; font-weight: 300; color: var(--text); line-height: 1; margin-bottom: 5px; letter-spacing: -0.02em; font-family: 'Playfair Display', serif; }
+.metric-sub { font-size: 12px; color: var(--text3); }
+.metric-trend-up { color: var(--green); }
+.metric-trend-down { color: var(--red); }
+
+/* GRID LAYOUTS */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.col-span-2 { grid-column: span 2; }
+
+/* TABLE */
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th {
+  font-size: 11px; font-weight: 600; color: var(--text3);
+  letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 10px 16px;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+.data-table td {
+  padding: 12px 16px; border-bottom: 1px solid var(--border);
+  font-size: 13px; color: var(--text);
+  vertical-align: middle;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tbody tr:hover { background: #FDFAF6; }
+.table-name { font-weight: 500; }
+.table-sub { font-size: 11px; color: var(--text3); margin-top: 2px; }
+
+/* PROGRESS BAR */
+.progress-item { margin-bottom: 14px; }
+.progress-item:last-child { margin-bottom: 0; }
+.progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.progress-name { font-size: 13px; color: var(--text); font-weight: 400; }
+.progress-pct { font-size: 12px; font-weight: 600; color: var(--text2); font-family: 'DM Mono', monospace; }
+.progress-track { height: 5px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 3px; transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); }
+
+/* ALERT / NOTIFICATION ROWS */
+.alert-row {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 14px 22px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
+.alert-row:last-child { border-bottom: none; }
+.alert-row:hover { background: #FDFAF6; }
+.alert-icon {
+  width: 36px; height: 36px; border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0; margin-top: 1px;
+}
+.alert-body { flex: 1; }
+.alert-title { font-size: 13.5px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.alert-desc { font-size: 12.5px; color: var(--text2); line-height: 1.5; margin-bottom: 6px; }
+.alert-meta { font-size: 11px; color: var(--text3); }
+.alert-chips { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 6px; }
+.alert-action { flex-shrink: 0; align-self: center; }
+
+/* PILLAR CARDS */
+.pillar-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 22px; }
+.pillar-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.18s;
+  box-shadow: var(--shadow);
+}
+.pillar-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.pillar-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 14px;
+}
+.pillar-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
+.pillar-desc { font-size: 12px; color: var(--text3); line-height: 1.5; }
+.pillar-stat { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text2); }
+.pillar-stat strong { color: var(--text); font-weight: 600; }
+
+/* SCORE RING */
+.score-display {
+  display: flex; align-items: center; gap: 20px;
+  padding: 20px;
+  background: var(--surface2);
+  border-radius: var(--radius-lg);
+  margin-top: 4px;
+}
+.ring-wrap { position: relative; width: 90px; height: 90px; flex-shrink: 0; }
+.ring-wrap svg { width: 90px; height: 90px; }
+.ring-val {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 22px; font-weight: 600; color: var(--text);
+  font-family: 'Playfair Display', serif;
+}
+.score-info .score-num { font-size: 11px; color: var(--text3); margin-bottom: 4px; }
+.score-info .score-rec { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+/* FORM ELEMENTS */
+.form-group { margin-bottom: 14px; }
+.form-group:last-of-type { margin-bottom: 0; }
+.form-label { font-size: 12px; font-weight: 500; color: var(--text2); display: block; margin-bottom: 5px; }
+.form-control {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--surface);
+  font-family: 'DM Sans', sans-serif;
+  transition: border-color 0.15s;
+  appearance: none;
+}
+.form-control:focus { outline: none; border-color: var(--accent); }
+.form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+textarea.form-control { height: 80px; resize: vertical; }
+
+/* KIOSK STATUS */
+.kiosk-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  transition: all 0.15s;
+  box-shadow: var(--shadow);
+}
+.kiosk-card:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.kiosk-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+.kiosk-id {
+  width: 40px; height: 40px; border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; font-family: 'DM Mono', monospace;
+}
+.kiosk-name { font-size: 13.5px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.kiosk-loc { font-size: 12px; color: var(--text3); }
+.kiosk-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 14px; }
+.kiosk-stat { text-align: center; }
+.kiosk-stat-val { font-size: 18px; font-weight: 500; color: var(--text); font-family: 'Playfair Display', serif; }
+.kiosk-stat-lbl { font-size: 10px; color: var(--text3); margin-top: 2px; }
+.status-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  display: inline-block; margin-right: 4px;
+}
+
+/* PARTNER ROW */
+.partner-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 22px; border-bottom: 1px solid var(--border);
+}
+.partner-row:last-child { border-bottom: none; }
+.partner-logo {
+  width: 40px; height: 40px; border-radius: var(--radius);
+  background: var(--surface2); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: var(--text2);
+  flex-shrink: 0; letter-spacing: 0.03em;
+}
+.partner-info { flex: 1; }
+.partner-name { font-size: 13.5px; font-weight: 500; color: var(--text); }
+.partner-role { font-size: 12px; color: var(--text3); margin-top: 2px; }
+.partner-chips { display: flex; gap: 5px; margin-top: 6px; }
+
+/* MODULE ROWS */
+.module-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 22px; border-bottom: 1px solid var(--border);
+}
+.module-row:last-child { border-bottom: none; }
+.module-icon {
+  width: 38px; height: 38px; border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
+}
+.module-info { flex: 1; }
+.module-title { font-size: 13.5px; font-weight: 500; color: var(--text); }
+.module-meta { font-size: 12px; color: var(--text3); margin-top: 2px; }
+.module-chips { display: flex; gap: 5px; margin-top: 5px; }
+
+/* GRANT ROW */
+.grant-row {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 16px 22px; border-bottom: 1px solid var(--border);
+}
+.grant-row:last-child { border-bottom: none; }
+.grant-info { flex: 1; }
+.grant-title { font-size: 13.5px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.grant-desc { font-size: 12.5px; color: var(--text2); line-height: 1.5; }
+.grant-amount { font-size: 18px; font-weight: 500; color: var(--accent); font-family: 'Playfair Display', serif; white-space: nowrap; }
+.grant-meta { font-size: 11px; color: var(--text3); margin-top: 2px; text-align: right; }
+
+/* DIVIDER */
+.divider { height: 1px; background: var(--border); margin: 18px 0; }
+
+/* SECTION TITLE */
+.section-label {
+  font-size: 11px; font-weight: 600; color: var(--text3);
+  letter-spacing: 0.07em; text-transform: uppercase;
+  margin-bottom: 14px; margin-top: 22px;
+}
+.section-label:first-child { margin-top: 0; }
+
+/* HEAT GAUGE BAR */
+.heat-gauge { display: flex; height: 10px; border-radius: 5px; overflow: hidden; margin: 8px 0; }
+.heat-gauge-seg { flex: 1; }
+
+/* NOTIFICATION DOT */
+.notif-dot {
+  width: 7px; height: 7px; background: var(--accent);
+  border-radius: 50%; display: inline-block; margin-left: 6px;
+}
+
+/* WEARABLE VITAL */
+.vital-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.vital-card {
+  background: var(--surface2);
+  border-radius: var(--radius);
+  padding: 14px;
+  text-align: center;
+}
+.vital-val { font-size: 24px; font-weight: 400; font-family: 'Playfair Display', serif; color: var(--text); }
+.vital-unit { font-size: 11px; color: var(--text3); margin-top: 2px; }
+.vital-label { font-size: 11px; font-weight: 500; color: var(--text2); margin-top: 6px; letter-spacing: 0.03em; }
+
+/* TIMELINE */
+.timeline { position: relative; padding-left: 20px; }
+.timeline::before { content: ''; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 1.5px; background: var(--border); }
+.tl-item { position: relative; padding-bottom: 18px; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-dot { position: absolute; left: -20px; top: 5px; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--surface); }
+.tl-title { font-size: 13px; font-weight: 500; color: var(--text); }
+.tl-body { font-size: 12px; color: var(--text2); margin-top: 3px; line-height: 1.5; }
+.tl-date { font-size: 11px; color: var(--text3); margin-top: 2px; }
+
+/* TABS */
+.tab-row { display: flex; gap: 0; border-bottom: 1.5px solid var(--border); margin-bottom: 20px; }
+.tab {
+  padding: 10px 18px;
+  font-size: 13px; font-weight: 500;
+  color: var(--text3); cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1.5px;
+  transition: all 0.15s;
+}
+.tab:hover { color: var(--text2); }
+.tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ANIMATIONS */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.page.active { animation: fadeInUp 0.3s ease; }
+@keyframes countUp {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+/* HEAT INDEX BANNER */
+.heat-banner {
+  background: var(--accent);
+  border-radius: var(--radius-lg);
+  padding: 16px 22px;
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 22px;
+  color: #fff;
+}
+.heat-banner-temp { font-size: 42px; font-weight: 300; font-family: 'Playfair Display', serif; line-height: 1; }
+.heat-banner-info { flex: 1; }
+.heat-banner-label { font-size: 11px; opacity: 0.75; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 3px; }
+.heat-banner-status { font-size: 15px; font-weight: 500; }
+.heat-banner-sub { font-size: 12px; opacity: 0.75; margin-top: 3px; }
+.heat-banner-action { flex-shrink: 0; }
+.btn-ghost-white {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.3);
+  color: #fff;
+}
+.btn-ghost-white:hover { background: rgba(255,255,255,0.25); }
+
+/* EMPTY SPACE */
+.spacer { height: 24px; }
+
+/* RESPONSIVE hint */
+@media (max-width: 900px) {
+  .pillar-grid { grid-template-columns: repeat(2, 1fr); }
+  .metrics-row { grid-template-columns: repeat(2, 1fr); }
+  .kiosk-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round">
+          <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/>
+          <circle cx="12" cy="9" r="2.5" fill="#fff" stroke="none"/>
+        </svg>
+      </div>
+      <div>
+        <div class="logo-text">HHRIC</div>
+      </div>
+    </div>
+    <div class="logo-sub">University of Arizona · COM–Phoenix</div>
+    <div style="margin-top:8px; font-size:11px; color:rgba(255,255,255,0.3); line-height:1.5;">Heat & Health Resilience<br>Innovation Consortium</div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Command center</div>
+    <div class="nav-item active" data-page="overview">
+      <span class="nav-icon">◈</span> Overview
+    </div>
+    <div class="nav-item" data-page="alerts">
+      <span class="nav-icon">◉</span> Live alerts <span class="nav-badge">3</span>
+    </div>
+
+    <div class="nav-section-label">Innovation pillars</div>
+    <div class="nav-item" data-page="wearables">
+      <span class="nav-icon">⌚</span> Wearable biosensors
+    </div>
+    <div class="nav-item" data-page="kiosks">
+      <span class="nav-icon">⬡</span> Cooling health oases
+    </div>
+    <div class="nav-item" data-page="susceptibility">
+      <span class="nav-icon">⬡</span> Heat susceptibility score
+    </div>
+    <div class="nav-item" data-page="education">
+      <span class="nav-icon">◫</span> Education & training
+    </div>
+
+    <div class="nav-section-label">Consortium</div>
+    <div class="nav-item" data-page="partners">
+      <span class="nav-icon">◎</span> Partners
+    </div>
+    <div class="nav-item" data-page="funding">
+      <span class="nav-icon">◈</span> Funding & grants
+    </div>
+    <div class="nav-item" data-page="report">
+      <span class="nav-icon">◧</span> Report illness
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="user-card">
+      <div class="avatar">FS</div>
+      <div>
+        <div class="user-name">Dr. Freya Spielberg</div>
+        <div class="user-role">Co-Lead, HHRIC</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+  <!-- ==================== OVERVIEW ==================== -->
+  <section id="page-overview" class="page active">
+    <div class="topbar">
+      <div>
+        <div class="page-title">Good morning, Dr. Spielberg</div>
+        <div class="page-subtitle">Phoenix, AZ · Monday, April 20, 2026 · Heat season active</div>
+      </div>
+      <div class="topbar-actions">
+        <span class="chip chip-red"><span class="chip-dot"></span>Excessive heat warning</span>
+        <button class="btn btn-sm">Export report</button>
+      </div>
+    </div>
+
+    <div class="heat-banner">
+      <div class="heat-banner-temp">107°F</div>
+      <div class="heat-banner-info">
+        <div class="heat-banner-label">Current heat index · Phoenix metro</div>
+        <div class="heat-banner-status">Excessive heat warning in effect through Thursday 8 PM</div>
+        <div class="heat-banner-sub">Maricopa County has the highest heat-related death rate in the United States</div>
+      </div>
+      <div class="heat-banner-action">
+        <button class="btn btn-sm btn-ghost-white" onclick="nav('alerts')">View all alerts →</button>
+      </div>
+    </div>
+
+    <div class="metrics-row">
+      <div class="metric-card">
+        <div class="metric-label">Active study participants</div>
+        <div class="metric-value">312</div>
+        <div class="metric-sub"><span class="metric-trend-up">↑ 18</span> enrolled this month</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Kiosk visits this month</div>
+        <div class="metric-value">1,204</div>
+        <div class="metric-sub">Across 4 active sites</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Individuals scored (EHR)</div>
+        <div class="metric-value">1,840</div>
+        <div class="metric-sub"><span style="color:var(--red);">381 high risk</span> flagged</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Alerts resolved today</div>
+        <div class="metric-value">23</div>
+        <div class="metric-sub"><span class="metric-trend-up">100%</span> response rate</div>
+      </div>
+    </div>
+
+    <div class="pillar-grid">
+      <div class="pillar-card" onclick="nav('wearables')">
+        <div class="pillar-icon" style="background:var(--blue-light);">⌚</div>
+        <div class="pillar-name">Wearable biosensors</div>
+        <div class="pillar-desc">Armbands monitoring vitals, alerting outreach teams in real time</div>
+        <div class="pillar-stat"><strong>87</strong> devices deployed · <strong>3</strong> alerts active</div>
+      </div>
+      <div class="pillar-card" onclick="nav('kiosks')">
+        <div class="pillar-icon" style="background:var(--green-light);">⬡</div>
+        <div class="pillar-name">Cooling health oases</div>
+        <div class="pillar-desc">Movable, energy-independent kiosks with telemedicine & care access</div>
+        <div class="pillar-stat"><strong>4</strong> sites active · <strong>318</strong> consults/mo</div>
+      </div>
+      <div class="pillar-card" onclick="nav('susceptibility')">
+        <div class="pillar-icon" style="background:var(--purple-light);">◎</div>
+        <div class="pillar-name">Heat susceptibility score</div>
+        <div class="pillar-desc">AI algorithm using Banner Health EHR data to identify highest-risk individuals</div>
+        <div class="pillar-stat">Model <strong>v1 beta</strong> · <strong>82%</strong> complete</div>
+      </div>
+      <div class="pillar-card" onclick="nav('education')">
+        <div class="pillar-icon" style="background:var(--amber-light);">◫</div>
+        <div class="pillar-name">Education & training</div>
+        <div class="pillar-desc">Multilingual community tools and clinical curriculum for students</div>
+        <div class="pillar-stat"><strong>7</strong> modules live · <strong>3</strong> in development</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Initiative progress</div>
+          <span class="chip chip-accent">Big Idea Challenge Y1</span>
+        </div>
+        <div class="card-body">
+          <div class="progress-item">
+            <div class="progress-header">
+              <span class="progress-name">Wearable device pilot</span>
+              <span class="progress-pct">68%</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill" style="width:68%;background:var(--blue);"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-header">
+              <span class="progress-name">Cooling health oasis deployment</span>
+              <span class="progress-pct">45%</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill" style="width:45%;background:var(--green);"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-header">
+              <span class="progress-name">Heat susceptibility model v1</span>
+              <span class="progress-pct">82%</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill" style="width:82%;background:var(--purple);"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-header">
+              <span class="progress-name">Multilingual education suite</span>
+              <span class="progress-pct">55%</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill" style="width:55%;background:var(--amber);"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-header">
+              <span class="progress-name">CHW training curriculum</span>
+              <span class="progress-pct">90%</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill" style="width:90%;background:var(--teal);"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Recent activity</div>
+          <button class="btn btn-sm">View all</button>
+        </div>
+        <div class="card-body-flush">
+          <div class="alert-row">
+            <div class="alert-icon" style="background:var(--red-light);font-size:15px;">⚠</div>
+            <div class="alert-body">
+              <div class="alert-title">Heat stroke alert — Participant #044</div>
+              <div class="alert-desc">Wearable triggered. Outreach dispatched to Encanto. Resolved at K1 kiosk.</div>
+              <div class="alert-meta">Today, 9:14 AM</div>
+            </div>
+          </div>
+          <div class="alert-row">
+            <div class="alert-icon" style="background:var(--green-light);font-size:15px;">✓</div>
+            <div class="alert-body">
+              <div class="alert-title">Kiosk K3 · 48 visits yesterday</div>
+              <div class="alert-desc">South Mountain site highest utilization. 12 telemedicine consults completed.</div>
+              <div class="alert-meta">Today, 8:00 AM</div>
+            </div>
+          </div>
+          <div class="alert-row">
+            <div class="alert-icon" style="background:var(--purple-light);font-size:15px;">◎</div>
+            <div class="alert-body">
+              <div class="alert-title">Susceptibility model update</div>
+              <div class="alert-desc">92 new Banner Health patients scored. 14 high-risk flags sent to outreach team.</div>
+              <div class="alert-meta">Today, 7:30 AM</div>
+            </div>
+          </div>
+          <div class="alert-row">
+            <div class="alert-icon" style="background:var(--amber-light);font-size:15px;">◫</div>
+            <div class="alert-body">
+              <div class="alert-title">CHW training module approved</div>
+              <div class="alert-desc">Heat response field protocol v2 cleared for COM–Phoenix distribution.</div>
+              <div class="alert-meta">Yesterday</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== LIVE ALERTS ==================== -->
+  <section id="page-alerts" class="page">
+    <div class="topbar">
+      <div>
+        <div class="page-title">Live alerts</div>
+        <div class="page-subtitle">Active wearable alerts, NWS warnings, and field reports</div>
+      </div>
+      <div class="topbar-actions">
+        <span class="chip chip-red"><span class="chip-dot"></span>3 active alerts</span>
+        <button class="btn btn-sm btn-primary">Dispatch team</button>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:20px;">
+      <div class="metric-card"><div class="metric-label">Phoenix heat index now</div><div class="metric-value" style="color:var(--red);">107°F</div><div class="metric-sub">Feels like 113°F</div></div>
+      <div class="metric-card"><div class="metric-label">Peak temp forecast (Tue)</div><div class="metric-value" style="color:var(--red);">112°F</div><div class="metric-sub">Excessive heat warning</div></div>
+      <div class="metric-card"><div class="metric-label">Wearable alerts today</div><div class="metric-value">3</div><div class="metric-sub">All devices responding</div></div>
+      <div class="metric-card"><div class="metric-label">Unhoused deaths 2024 AZ</div><div class="metric-value">~50%</div><div class="metric-sub">Of all heat deaths</div></div>
+    </div>
+
+    <div class="card" style="margin-bottom:18px;">
+      <div class="card-header">
+        <div class="card-title">Active wearable alerts</div>
+        <span class="chip chip-red"><span class="chip-dot"></span>3 open</span>
+      </div>
+      <div class="card-body-flush">
+        <div class="alert-row">
+          <div class="alert-icon" style="background:var(--red-light);">🔴</div>
+          <div class="alert-body">
+            <div class="alert-title">Heat stroke risk — Participant #044, Encanto</div>
+            <div class="alert-desc">Core temp 104.1°F, HR 122 bpm, sustained 18 min. Outreach team en route.</div>
+            <div class="alert-chips">
+              <span class="chip chip-gray">Male, 62</span>
+              <span class="chip chip-gray">Unhoused</span>
+              <span class="chip chip-red">Critical</span>
+              <span class="chip chip-amber">Team dispatched</span>
+            </div>
+            <div class="alert-meta">Today, 10:41 AM · Device ID W-044</div>
+          </div>
+          <div class="alert-action"><button class="btn btn-sm btn-primary">Track team</button></div>
+        </div>
+        <div class="alert-row">
+          <div class="alert-icon" style="background:var(--amber-light);">🟡</div>
+          <div class="alert-body">
+            <div class="alert-title">Heat exhaustion — Participant #071, Maryvale</div>
+            <div class="alert-desc">HR 108 bpm, skin temp elevated 30 min. Hydration indicator low. Telemedicine initiated.</div>
+            <div class="alert-chips">
+              <span class="chip chip-gray">Female, 58</span>
+              <span class="chip chip-gray">Outdoor worker</span>
+              <span class="chip chip-amber">Elevated</span>
+              <span class="chip chip-teal">Teleconsult active</span>
+            </div>
+            <div class="alert-meta">Today, 10:28 AM · Device ID W-071</div>
+          </div>
+          <div class="alert-action"><button class="btn btn-sm">Join consult</button></div>
+        </div>
+        <div class="alert-row">
+          <div class="alert-icon" style="background:var(--blue-light);">🔵</div>
+          <div class="alert-body">
+            <div class="alert-title">Early warning — Participant #109, South Mountain</div>
+            <div class="alert-desc">Pre-symptomatic pattern detected. CHW wellness call placed, participant relocating to K3.</div>
+            <div class="alert-chips">
+              <span class="chip chip-gray">Male, 71</span>
+              <span class="chip chip-gray">Elderly, lives alone</span>
+              <span class="chip chip-blue">Monitoring</span>
+            </div>
+            <div class="alert-meta">Today, 10:05 AM · Device ID W-109</div>
+          </div>
+          <div class="alert-action"><button class="btn btn-sm">View profile</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">7-day heat forecast · Maricopa County</div>
+      </div>
+      <div class="card-body">
+        <table class="data-table">
+          <thead>
+            <tr><th>Day</th><th>High</th><th>Heat index</th><th>Risk level</th><th>Recommended action</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Mon Apr 20</strong></td><td>107°F</td><td>113°F</td><td><span class="chip chip-red">Extreme</span></td><td>Full kiosk protocol · All CHWs deployed</td></tr>
+            <tr><td>Tue Apr 21</td><td>112°F</td><td>118°F</td><td><span class="chip chip-red">Extreme</span></td><td>Activate extended kiosk hours · Street medicine standby</td></tr>
+            <tr><td>Wed Apr 22</td><td>110°F</td><td>115°F</td><td><span class="chip chip-red">Extreme</span></td><td>Continue full protocol</td></tr>
+            <tr><td>Thu Apr 23</td><td>104°F</td><td>108°F</td><td><span class="chip chip-amber">High</span></td><td>Maintain kiosk ops · Monitor wearables</td></tr>
+            <tr><td>Fri Apr 24</td><td>99°F</td><td>103°F</td><td><span class="chip chip-amber">Elevated</span></td><td>Standard protocol</td></tr>
+            <tr><td>Sat Apr 25</td><td>94°F</td><td>97°F</td><td><span class="chip chip-blue">Moderate</span></td><td>Routine operations</td></tr>
+            <tr><td>Sun Apr 26</td><td>91°F</td><td>93°F</td><td><span class="chip chip-green">Normal</span></td><td>Routine operations</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== WEARABLES ==================== -->
+  <section id="page-wearables" class="page">
+    <div class="topbar">
+      <div>
+        <div class="page-title">Wearable biosensor program</div>
+        <div class="page-subtitle">Armbands monitoring vitals and alerting outreach teams in real time</div>
+      </div>
+      <div class="topbar-actions">
+        <span class="chip chip-blue">Pilot phase</span>
+        <button class="btn btn-sm btn-primary">Enroll participant</button>
+      </div>
+    </div>
+
+    <div class="metrics-row">
+      <div class="metric-card"><div class="metric-label">Devices deployed</div><div class="metric-value">87</div><div class="metric-sub">Armbands active</div></div>
+      <div class="metric-card"><div class="metric-label">Alerts triggered</div><div class="metric-value">23</div><div class="metric-sub">Last 30 days</div></div>
+      <div class="metric-card"><div class="metric-label">Avg response time</div><div class="metric-value">8 min</div><div class="metric-sub">Alert to outreach arrival</div></div>
+      <div class="metric-card"><div class="metric-label">Heat strokes prevented</div><div class="metric-value">11</div><div class="metric-sub">Est. via early intervention</div></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Participant monitoring — live</div>
+          <span class="chip chip-green"><span class="chip-dot"></span>87 online</span>
+        </div>
+        <div class="card-body-flush">
+          <table class="data-table">
+            <thead>
+              <tr><th>ID</th><th>Status</th><th>Core temp</th><th>HR</th><th>Last ping</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="table-name">#044</span></td><td><span class="chip chip-red">Alert</span></td><td style="color:var(--red);font-weight:600;">104.1°F</td><td>122 bpm</td><td>Now</td></tr>
+              <tr><td><span class="table-name">#071</span></td><td><span class="chip chip-amber">Watch</span></td><td>101.8°F</td><td>108 bpm</td><td>2 min ago</td></tr>
+              <tr><td><span class="table-name">#109</span></td><td><span class="chip chip-blue">Monitor</span></td><td>99.9°F</td><td>94 bpm</td><td>1 min ago</td></tr>
+              <tr><td><span class="table-name">#023</span></td><td><span class="chip chip-green">Normal</span></td><td>98.6°F</td><td>78 bpm</td><td>3 min ago</td></tr>
+              <tr><td><span class="table-name">#058</span></td><td><span class="chip chip-green">Normal</span></td><td>98.9°F</td><td>82 bpm</td><td>4 min ago</td></tr>
+              <tr><td><span class="table-name">#091</span></td><td><span class="chip chip-green">Normal</span></td><td>99.1°F</td><td>80 bpm</td><td>5 min ago</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-header"><div class="card-title">Alert thresholds</div><button class="btn btn-sm">Edit</button></div>
+          <div class="card-body">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);">
+              <span style="font-size:13px;color:var(--text2);">Heat stroke risk</span>
+              <span style="font-family:'DM Mono',monospace;font-size:13px;color:var(--red);font-weight:500;">≥ 103°F + HR ≥ 110</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);">
+              <span style="font-size:13px;color:var(--text2);">Heat exhaustion</span>
+              <span style="font-family:'DM Mono',monospace;font-size:13px;color:var(--amber);font-weight:500;">≥ 101°F + HR ≥ 100</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);">
+              <span style="font-size:13px;color:var(--text2);">Early warning</span>
+              <span style="font-family:'DM Mono',monospace;font-size:13px;color:var(--blue);font-weight:500;">≥ 100°F sustained 15 min</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;">
+              <span style="font-size:13px;color:var(--text2);">Device offline</span>
+              <span style="font-family:'DM Mono',monospace;font-size:13px;color:var(--text3);font-weight:500;">No ping > 10 min</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><div class="card-title">Enrollment by population</div></div>
+          <div class="card-body">
+            <div class="progress-item">
+              <div class="progress-header"><span class="progress-name">Unhoused individuals</span><span class="progress-pct">48</span></div>
+              <div class="progress-track"><div class="progress-fill" style="width:55%;background:var(--accent);"></div></div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-header"><span class="progress-name">Outdoor workers</span><span class="progress-pct">24</span></div>
+              <div class="progress-track"><div class="progress-fill" style="width:28%;background:var(--blue);"></div></div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-header"><span class="progress-name">Elderly (65+)</span><span class="progress-pct">15</span></div>
+              <div class="progress-track"><div class="progress-fill" style="width:17%;background:var(--purple);"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== KIOSKS ==================== -->
+  <section id="page-kiosks" class="page">
+    <div class="topbar">
+      <div>
+        <div class="page-title">Cooling health oases</div>
+        <div class="page-subtitle">Movable, energy-independent kiosks with telemedicine, care, and kiosk care systems</div>
+      </div>
+      <div class="topbar-actions">
+        <span class="chip chip-green"><span class="chip-dot"></span>4 active sites</span>
+        <button class="btn btn-sm btn-primary">Add site</button>
+      </div>
+    </div>
+
+    <div class="metrics-row">
+      <div class="metric-card"><div class="metric-label">Total visits this month</div><div class="metric-value">1,204</div></div>
+      <div class="metric-card"><div class="metric-label">Telemedicine consults</div><div class="metric-value">318</div></div>
+      <div class="metric-card"><div class="metric-label">Supplies dispensed</div><div class="metric-value">892</div></div>
+      <div class="metric-card"><div class="metric-label">Banner Health referrals</div><div class="metric-value">67</div></div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:20px;" id="kiosk-grid">
+      <div class="kiosk-card">
+        <div class="kiosk-header">
+          <div class="kiosk-id" style="background:var(--green-light);color:var(--green);">K1</div>
+          <span class="chip chip-green"><span class="chip-dot"></span>Online</span>
+        </div>
+        <div class="kiosk-name">Human Services Campus</div>
+        <div class="kiosk-loc">650 N 2nd Ave, Phoenix · Downtown</div>
+        <div style="margin-top:10px;display:flex;gap:5px;flex-wrap:wrap;">
+          <span class="chip chip-teal">Telemedicine</span>
+          <span class="chip chip-gray">Solar powered</span>
+          <span class="chip chip-blue">Mental health</span>
+        </div>
+        <div class="kiosk-stats">
+          <div class="kiosk-stat"><div class="kiosk-stat-val">412</div><div class="kiosk-stat-lbl">Visits/mo</div></div>
+          <div class="kiosk-stat"><div class="kiosk-stat-val">128</div><div class="kiosk-stat-lbl">Consults</div></div>
+          <div class="kiosk-stat"><div class="kiosk-stat-val">48</div><div class="kiosk-stat-lbl">Avg/day</div></div>
+        </div>
+      </div>
+
+      <div class="kiosk-card">
+        <div class="kiosk-header">
+          <div class="kiosk-id" style="background:var(--green-light);color:var(--green);">K2</div>
+          <span class="chip chip-green"><span class="chip-dot"></span>Online</span>
+        </div>
+        <div class="kiosk-name">Maryvale Community Center</div>
+        <div class="kiosk-loc">4002 N 51st Ave, Phoenix · West Phoenix</div>
+        <div style="margin-top:10px;display:flex;gap:5px;flex-wrap:wrap;">
+          <span class="chip chip-purple">Bilingual EN/ES</span>
+          <span class="chip chip-teal">Telemedicine</span>
+          <span class="chip chip-gray">Outdoor workers</span>
+        </div>
+        <div class="kiosk-stats">
+          <div class="kiosk-stat"><div class="kiosk-stat-val">318</div><div class="kiosk-stat-lbl">Visits/mo</div></div>
+          <div class="kiosk-stat"><div class="kiosk-stat-val">92</div><div class="kiosk-stat-lbl">Consults</div></div>
+          <div class="kiosk-stat"><div class="kiosk-stat-val">31</div><div class="kiosk-stat-lbl">Avg/day</div></div>
+        </div>
+      </div>
+
+      <div class="kiosk-card">
+        <div class="kiosk-header">
+          <div class="kiosk-id" style="background:var(--green-light);color:var(--green);">K3</div>
+          <span class="chip chip-green"><span class="chip-dot"></span>Online</span>
+        </div>
+        <div class="kiosk-name">South Mountain Village</div>
+        <div class="kiosk-loc">S Central Ave & Baseline Rd, Phoenix</div>
+        <div style="margin-top:10px;display:flex;gap:5px;flex-wrap:wrap;">
+          <span class="chip chip-blue">Banner referral linked</span>
+          <span class="chip chip-gray">Elderly focus</span>
+        </div>
+        <div class="kiosk-stats">
+          <div class="kiosk-stat"><div class="kiosk-stat-val">328</div><div class="kiosk-stat-lbl">Visits/mo</div></div>
+          <div class="kiosk-stat"><div class="kiosk-stat-val">74</div><div class="kiosk-stat-lbl">Consults</div></div>
+          <div class="kiosk-stat"><div class="kiosk-stat-val">34</div><div class="kiosk-stat-lbl">Avg/day</div></div>
+        </div>
+      </div>
+
+      <div class="kiosk-card">
+        <div class="kiosk-header">
+          <div class="kiosk-id" style="background:var(--amber-light);color:var(--amber);">K4</div>
+          <span class="chip chip-amber">Mobile · Partial hrs</span>
+        </div>
+        <div class="kiosk-name">Encanto Park — Mobile Unit</div>
+        <div class="kiosk-loc">2605 N 15th Ave, Phoenix · Rotating Tue–Sat</div>
+        <div style="margin-top:10px;display:flex;gap:5px;flex-wrap:wrap;">
+          <span class="chip chip-gray">10 AM – 6 PM</span>
+          <span class="chip chip-gray">Self-contained</span>
+        </div>
+        <div class="kiosk-stats">
+          <div class="kiosk-stat"><div class="kiosk-stat-val">146</div><div class="kiosk-stat-lbl">Visits/mo</div></div>
+          <div class="kiosk-stat"><div class="kiosk-stat-val">24</div><div class="kiosk-stat-lbl">Consults</div></div>
+          <div class="kiosk-stat"><div class="kiosk-stat-val">19</div><div class="kiosk-stat-lbl">Avg/day</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><div class="card-title">Planned sites — pipeline</div></div>
+      <div class="card-body-flush">
+        <div class="alert-row">
+          <div class="alert-icon" style="background:var(--blue-light);">K5</div>
+          <div class="alert-body">
+            <div class="alert-title">Rural Arizona — TBD location</div>
+            <div class="alert-desc">Targeting underserved rural community with limited healthcare access. Kiosk care vending system prioritized.</div>
+            <div class="alert-chips"><span class="chip chip-amber">Site selection</span><span class="chip chip-gray">Q3 2026</span></div>
+          </div>
+        </div>
+        <div class="alert-row">
+          <div class="alert-icon" style="background:var(--blue-light);">K6</div>
+          <div class="alert-body">
+            <div class="alert-title">Laveen / South Mountain expansion</div>
+            <div class="alert-desc">Second permanent kiosk to cover high-density outdoor worker corridor on Laveen area.</div>
+            <div class="alert-chips"><span class="chip chip-amber">Planning</span><span class="chip chip-gray">Q4 2026</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SUSCEPTIBILITY ==================== -->
+  <section id="page-susceptibility" class="page">
+    <div class="topbar">
+      <div>
+        <div class="page-title">Heat susceptibility score</div>
+        <div class="page-subtitle">AI algorithm using Banner Health EHR data to identify and pre-emptively reach highest-risk individuals</div>
+      </div>
+      <div class="topbar-actions">
+        <span class="chip chip-purple">Model v1 beta</span>
+        <button class="btn btn-sm">Export flagged list</button>
+      </div>
+    </div>
+
+    <div class="metrics-row">
+      <div class="metric-card"><div class="metric-label">Individuals scored</div><div class="metric-value">1,840</div><div class="metric-sub">Banner Health EHR</div></div>
+      <div class="metric-card"><div class="metric-label">High risk flagged</div><div class="metric-value" style="color:var(--red);">381</div><div class="metric-sub">Score ≥ 70</div></div>
+      <div class="metric-card"><div class="metric-label">Outreach completed</div><div class="metric-value">248</div><div class="metric-sub">65% of high-risk reached</div></div>
+      <div class="metric-card"><div class="metric-label">Model accuracy (AUC)</div><div class="metric-value">0.84</div><div class="metric-sub">Validation set</div></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Score calculator</div><span class="chip chip-purple">Illustrative · v1 factors</span></div>
+        <div class="card-body">
+          <div class="form-grid-2" style="margin-bottom:12px;">
+            <div class="form-group">
+              <label class="form-label">Age</label>
+              <input type="number" class="form-control" id="sc-age" value="68" min="0" max="110" oninput="calcScore()"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Housing status</label>
+              <select class="form-control" id="sc-housing" onchange="calcScore()">
+                <option value="0">Housed, AC available</option>
+                <option value="1" selected>Housed, no reliable AC</option>
+                <option value="2">Unhoused / outdoor</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-grid-2" style="margin-bottom:12px;">
+            <div class="form-group">
+              <label class="form-label">Chronic conditions</label>
+              <select class="form-control" id="sc-chronic" onchange="calcScore()">
+                <option value="0">None</option>
+                <option value="1" selected>1–2 (diabetes, HTN, etc.)</option>
+                <option value="2">3+ or cardiovascular disease</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Heat-risk medications</label>
+              <select class="form-control" id="sc-meds" onchange="calcScore()">
+                <option value="0">None</option>
+                <option value="1" selected>Yes (diuretics, antipsychotics)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-grid-2" style="margin-bottom:16px;">
+            <div class="form-group">
+              <label class="form-label">Outdoor work exposure</label>
+              <select class="form-control" id="sc-outdoor" onchange="calcScore()">
+                <option value="0" selected>None</option>
+                <option value="1">Partial (< 4 hrs/day)</option>
+                <option value="2">Full (≥ 4 hrs/day)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Prior heat-related illness</label>
+              <select class="form-control" id="sc-prior" onchange="calcScore()">
+                <option value="0" selected>No</option>
+                <option value="1">Yes</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="score-display">
+            <div class="ring-wrap">
+              <svg viewBox="0 0 90 90">
+                <circle cx="45" cy="45" r="35" fill="none" stroke="#EEE" stroke-width="8"/>
+                <circle cx="45" cy="45" r="35" fill="none" stroke="#E24B4A" stroke-width="8"
+                  stroke-dasharray="219.9" stroke-dashoffset="65.97" stroke-linecap="round"
+                  transform="rotate(-90 45 45)" id="score-arc"/>
+              </svg>
+              <div class="ring-val" id="score-val">70</div>
+            </div>
+            <div class="score-info" style="flex:1;">
+              <div class="score-num">Heat susceptibility score / 100</div>
+              <div id="score-chip" style="margin-bottom:8px;"><span class="chip chip-red">High risk</span></div>
+              <div id="score-rec" class="score-rec">Prioritize for immediate outreach. Assign CHW for wellness checks. Flag for kiosk referral during heat events.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-header"><div class="card-title">High-risk patient queue</div><span class="chip chip-red">381 flagged</span></div>
+          <div class="card-body-flush">
+            <table class="data-table">
+              <thead><tr><th>Patient</th><th>Score</th><th>Top risk factor</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td><span class="table-name">M.T., 78</span><div class="table-sub">Encanto · Unhoused</div></td><td><span style="font-weight:700;color:var(--red);font-family:'DM Mono',monospace;">92</span></td><td>Age + unhoused</td><td><span class="chip chip-green">Reached</span></td></tr>
+                <tr><td><span class="table-name">B.P., 83</span><div class="table-sub">Laveen · Lives alone</div></td><td><span style="font-weight:700;color:var(--red);font-family:'DM Mono',monospace;">88</span></td><td>Age + cardiac hx</td><td><span class="chip chip-amber">Pending</span></td></tr>
+                <tr><td><span class="table-name">R.G., 54</span><div class="table-sub">Maryvale · Outdoor worker</div></td><td><span style="font-weight:700;color:var(--amber);font-family:'DM Mono',monospace;">74</span></td><td>Outdoor work + diabetes</td><td><span class="chip chip-green">Reached</span></td></tr>
+                <tr><td><span class="table-name">D.L., 41</span><div class="table-sub">South Mountain · Unhoused</div></td><td><span style="font-weight:700;color:var(--amber);font-family:'DM Mono',monospace;">71</span></td><td>Unhoused + antipsychotics</td><td><span class="chip chip-red">Unreached</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">Model variables</div><button class="btn btn-sm">Request update</button></div>
+          <div class="card-body">
+            <div class="progress-item"><div class="progress-header"><span class="progress-name">Age ≥ 65</span><span class="progress-pct">25 pts</span></div><div class="progress-track"><div class="progress-fill" style="width:100%;background:var(--accent);"></div></div></div>
+            <div class="progress-item"><div class="progress-header"><span class="progress-name">Housing / AC access</span><span class="progress-pct">up to 30 pts</span></div><div class="progress-track"><div class="progress-fill" style="width:80%;background:var(--red);"></div></div></div>
+            <div class="progress-item"><div class="progress-header"><span class="progress-name">Chronic conditions</span><span class="progress-pct">up to 24 pts</span></div><div class="progress-track"><div class="progress-fill" style="width:65%;background:var(--purple);"></div></div></div>
+            <div class="progress-item"><div class="progress-header"><span class="progress-name">Heat-affecting medications</span><span class="progress-pct">10 pts</span></div><div class="progress-track"><div class="progress-fill" style="width:40%;background:var(--amber);"></div></div></div>
+            <div class="progress-item"><div class="progress-header"><span class="progress-name">Prior heat illness</span><span class="progress-pct">10 pts</span></div><div class="progress-track"><div class="progress-fill" style="width:40%;background:var(--blue);"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EDUCATION ==================== -->
+  <section id="page-education" class="page">
+    <div class="topbar">
+      <div>
+        <div class="page-title">Education & training</div>
+        <div class="page-subtitle">Multilingual community tools and clinical curriculum for medical and public health students</div>
+      </div>
+      <div class="topbar-actions">
+        <button class="btn btn-sm btn-primary">Add module</button>
+      </div>
+    </div>
+
+    <div class="tab-row">
+      <div class="tab active" onclick="switchTab(this,'tab-community')">Community education</div>
+      <div class="tab" onclick="switchTab(this,'tab-clinical')">Clinical curriculum</div>
+      <div class="tab" onclick="switchTab(this,'tab-chw')">CHW training</div>
+    </div>
+
+    <div id="tab-community" class="tab-content">
+      <div class="section-label">Live modules</div>
+      <div class="card" style="margin-bottom:18px;">
+        <div class="card-body-flush">
+          <div class="module-row">
+            <div class="module-icon" style="background:var(--accent-light);">🌡</div>
+            <div class="module-info">
+              <div class="module-title">Heat safety for unhoused individuals</div>
+              <div class="module-meta">Warning signs, cooling resources, hydration. Outreach-ready format.</div>
+              <div class="module-chips"><span class="chip chip-green">Live</span><span class="chip chip-purple">EN / ES</span><span class="chip chip-gray">PDF + print</span></div>
+            </div>
+            <button class="btn btn-sm">Download</button>
+          </div>
+          <div class="module-row">
+            <div class="module-icon" style="background:var(--blue-light);">⛑</div>
+            <div class="module-info">
+              <div class="module-title">Outdoor worker heat protection</div>
+              <div class="module-meta">OSHA-aligned. Rest breaks, hydration schedules, employer obligations.</div>
+              <div class="module-chips"><span class="chip chip-green">Live</span><span class="chip chip-purple">EN / ES</span><span class="chip chip-gray">Employer toolkit</span></div>
+            </div>
+            <button class="btn btn-sm">Download</button>
+          </div>
+          <div class="module-row">
+            <div class="module-icon" style="background:var(--green-light);">🏥</div>
+            <div class="module-info">
+              <div class="module-title">Kiosk care user guide</div>
+              <div class="module-meta">How to access telemedicine, medications, and referrals at cooling health oases.</div>
+              <div class="module-chips"><span class="chip chip-green">Live</span><span class="chip chip-purple">EN / ES / ZH</span></div>
+            </div>
+            <button class="btn btn-sm">Download</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label">In development</div>
+      <div class="card">
+        <div class="card-body-flush">
+          <div class="module-row">
+            <div class="module-icon" style="background:var(--amber-light);">👴</div>
+            <div class="module-info">
+              <div class="module-title">Caregiver guide — elderly & chronically ill</div>
+              <div class="module-meta">Medication interaction awareness, emergency action steps, cooling resource directory.</div>
+              <div class="module-chips"><span class="chip chip-amber">In development</span><span class="chip chip-gray">Target: May 2026</span></div>
+            </div>
+          </div>
+          <div class="module-row">
+            <div class="module-icon" style="background:var(--purple-light);">🤖</div>
+            <div class="module-info">
+              <div class="module-title">AI-powered patient education generator</div>
+              <div class="module-meta">Generates tailored heat safety handouts by risk profile and language. Powered by LLM.</div>
+              <div class="module-chips"><span class="chip chip-amber">In development</span><span class="chip chip-purple">AI-assisted</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-clinical" class="tab-content" style="display:none;">
+      <div class="card">
+        <div class="card-body-flush">
+          <div class="module-row">
+            <div class="module-icon" style="background:var(--blue-light);">🎓</div>
+            <div class="module-info">
+              <div class="module-title">Heat-related illness — medical student module</div>
+              <div class="module-meta">Diagnosis, triage, treatment for COM–Phoenix M1/M2 students.</div>
+              <div class="module-chips"><span class="chip chip-green">Live</span><span class="chip chip-blue">1.5 CME hours</span><span class="chip chip-gray">COM–Phoenix</span></div>
+            </div>
+            <button class="btn btn-sm">View module</button>
+          </div>
+          <div class="module-row">
+            <div class="module-icon" style="background:var(--teal-light);">🌡</div>
+            <div class="module-info">
+              <div class="module-title">Climate & health — public health student seminar</div>
+              <div class="module-meta">Epidemiology of heat mortality, intervention design, policy levers. Zuckerman College of PH.</div>
+              <div class="module-chips"><span class="chip chip-green">Live</span><span class="chip chip-teal">ZCPH credit</span></div>
+            </div>
+            <button class="btn btn-sm">View module</button>
+          </div>
+          <div class="module-row">
+            <div class="module-icon" style="background:var(--amber-light);">📋</div>
+            <div class="module-info">
+              <div class="module-title">Emergency heat response — residency simulation</div>
+              <div class="module-meta">Simulated mass casualty heat event for family medicine and EM residents.</div>
+              <div class="module-chips"><span class="chip chip-amber">In development</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-chw" class="tab-content" style="display:none;">
+      <div class="card">
+        <div class="card-body-flush">
+          <div class="module-row">
+            <div class="module-icon" style="background:var(--green-light);">🏃</div>
+            <div class="module-info">
+              <div class="module-title">Community health worker — heat response field protocol</div>
+              <div class="module-meta">Risk identification, kiosk activation, wearable device management, EMS handoff.</div>
+              <div class="module-chips"><span class="chip chip-green">Live</span><span class="chip chip-teal">CHW certified</span><span class="chip chip-purple">EN / ES</span></div>
+            </div>
+            <button class="btn btn-sm">Download</button>
+          </div>
+          <div class="module-row">
+            <div class="module-icon" style="background:var(--purple-light);">◎</div>
+            <div class="module-info">
+              <div class="module-title">Using the heat susceptibility score — CHW guide</div>
+              <div class="module-meta">How to interpret scores, prioritize outreach, and refer to kiosk or clinical care.</div>
+              <div class="module-chips"><span class="chip chip-green">Live</span></div>
+            </div>
+            <button class="btn btn-sm">Download</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PARTNERS ==================== -->
+  <section id="page-partners" class="page">
+    <div class="topbar">
+      <div>
+        <div class="page-title">Consortium partners</div>
+        <div class="page-subtitle">Transdisciplinary team across UArizona colleges and external organizations</div>
+      </div>
+    </div>
+
+    <div class="section-label">UArizona — College of Medicine Phoenix</div>
+    <div class="card" style="margin-bottom:18px;">
+      <div class="card-body-flush">
+        <div class="partner-row">
+          <div class="partner-logo">FS</div>
+          <div class="partner-info">
+            <div class="partner-name">Dr. Freya Spielberg</div>
+            <div class="partner-role">Co-Lead · Clinical Professor & Vice Chair for Research, Dept. of Family, Community & Preventive Medicine</div>
+            <div class="partner-chips"><span class="chip chip-accent">Co-lead</span><span class="chip chip-gray">Community medicine</span><span class="chip chip-gray">Prevention</span></div>
+          </div>
+        </div>
+        <div class="partner-row">
+          <div class="partner-logo">AG</div>
+          <div class="partner-info">
+            <div class="partner-name">Dr. Amelia Gallitano</div>
+            <div class="partner-role">Co-Lead · Professor, Basic Medical Sciences; BIO5 Institute; Psychiatry; ZCPH</div>
+            <div class="partner-chips"><span class="chip chip-accent">Co-lead</span><span class="chip chip-gray">Neuroscience</span><span class="chip chip-gray">Psychiatry</span></div>
+          </div>
+        </div>
+        <div class="partner-row">
+          <div class="partner-logo">SV</div>
+          <div class="partner-info">
+            <div class="partner-name">Sharry Veres & M. Sriram Iyengar</div>
+            <div class="partner-role">College of Medicine – Phoenix · Engineering & informatics leads</div>
+            <div class="partner-chips"><span class="chip chip-blue">Wearables</span><span class="chip chip-purple">AI/ML</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">UArizona partner colleges</div>
+    <div class="card" style="margin-bottom:18px;">
+      <div class="card-body-flush">
+        <div class="partner-row">
+          <div class="partner-logo" style="font-size:9px;">ZCPH</div>
+          <div class="partner-info">
+            <div class="partner-name">Mel & Enid Zuckerman College of Public Health</div>
+            <div class="partner-role">Kacey Ernst — Epidemiology & biostatistics lead</div>
+            <div class="partner-chips"><span class="chip chip-green">Epidemiology</span><span class="chip chip-green">Active</span></div>
+          </div>
+        </div>
+        <div class="partner-row">
+          <div class="partner-logo">ENG</div>
+          <div class="partner-info">
+            <div class="partner-name">College of Engineering</div>
+            <div class="partner-role">Janet Meiling Roveda — Wearable biosensor hardware development</div>
+            <div class="partner-chips"><span class="chip chip-blue">Hardware</span><span class="chip chip-blue">Active</span></div>
+          </div>
+        </div>
+        <div class="partner-row">
+          <div class="partner-logo" style="font-size:9px;">CAPLA</div>
+          <div class="partner-info">
+            <div class="partner-name">CAPLA — Healthy Designs Lab</div>
+            <div class="partner-role">Bernal Cordova — Cooling health oasis structural architecture</div>
+            <div class="partner-chips"><span class="chip chip-teal">Architecture</span><span class="chip chip-teal">Active</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">External partners & data</div>
+    <div class="card">
+      <div class="card-body-flush">
+        <div class="partner-row">
+          <div class="partner-logo">BH</div>
+          <div class="partner-info">
+            <div class="partner-name">Banner Health</div>
+            <div class="partner-role">EHR data access for heat susceptibility model; clinical referral pathway integration</div>
+            <div class="partner-chips"><span class="chip chip-purple">Data partner</span><span class="chip chip-green">Active</span></div>
+          </div>
+        </div>
+        <div class="partner-row">
+          <div class="partner-logo">AZC</div>
+          <div class="partner-info">
+            <div class="partner-name">AZ Climate & Health</div>
+            <div class="partner-role">Julia Jernberg — Community and policy translation; field deployment support</div>
+            <div class="partner-chips"><span class="chip chip-amber">Community</span><span class="chip chip-green">Active</span></div>
+          </div>
+        </div>
+        <div class="partner-row">
+          <div class="partner-logo">SMP</div>
+          <div class="partner-info">
+            <div class="partner-name">Street Medicine Phoenix</div>
+            <div class="partner-role">Field outreach partner; access to unhoused populations for wearable enrollment</div>
+            <div class="partner-chips"><span class="chip chip-red">Outreach</span><span class="chip chip-green">Active</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FUNDING ==================== -->
+  <section id="page-funding" class="page">
+    <div class="topbar">
+      <div>
+        <div class="page-title">Funding & grants</div>
+        <div class="page-subtitle">Current awards, pipeline opportunities, and extramural targets</div>
+      </div>
+      <div class="topbar-actions">
+        <button class="btn btn-sm btn-primary">Add opportunity</button>
+      </div>
+    </div>
+
+    <div class="metrics-row">
+      <div class="metric-card"><div class="metric-label">Current funding</div><div class="metric-value">$250K</div><div class="metric-sub">Big Idea Challenge · Y1</div></div>
+      <div class="metric-card"><div class="metric-label">Total pipeline value</div><div class="metric-value">$4.1M</div><div class="metric-sub">Extramural targets</div></div>
+      <div class="metric-card"><div class="metric-label">Proposals in development</div><div class="metric-value">3</div></div>
+      <div class="metric-card"><div class="metric-label">Grant deadline — next</div><div class="metric-value">May 15</div><div class="metric-sub">NIH R01 — SCORCH</div></div>
+    </div>
+
+    <div class="section-label">Active funding</div>
+    <div class="card" style="margin-bottom:18px;">
+      <div class="card-body-flush">
+        <div class="grant-row">
+          <div class="grant-info">
+            <div class="grant-title">UArizona Big Idea Challenge</div>
+            <div class="grant-desc">Inaugural year award funding the HHRIC consortium launch. Supports all four innovation pillars for 2 years. One of six teams selected from 72 proposals.</div>
+            <div style="margin-top:8px;display:flex;gap:5px;"><span class="chip chip-green">Funded · Active</span><span class="chip chip-gray">2025–2027</span></div>
+          </div>
+          <div style="text-align:right;">
+            <div class="grant-amount">$250,000</div>
+            <div class="grant-meta">Office of Research & Partnerships</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">Extramural pipeline</div>
+    <div class="card">
+      <div class="card-body-flush">
+        <div class="grant-row">
+          <div class="grant-info">
+            <div class="grant-title">NIH R01 — SCORCH (Southwest Center on Resilience for Climate Change and Health)</div>
+            <div class="grant-desc">Align wearable biosensor and susceptibility score data with existing NIH-funded SCORCH infrastructure at UArizona. Heat mortality prevention intervention focus.</div>
+            <div style="margin-top:8px;display:flex;gap:5px;"><span class="chip chip-amber">Proposal in development</span><span class="chip chip-red">Due May 15, 2026</span></div>
+          </div>
+          <div style="text-align:right;">
+            <div class="grant-amount">$2.5M</div>
+            <div class="grant-meta">5-year award target</div>
+          </div>
+        </div>
+        <div class="grant-row">
+          <div class="grant-info">
+            <div class="grant-title">CDC BRACE — Building Resilience Against Climate Effects</div>
+            <div class="grant-desc">Existing UArizona BRACE program offers natural partnership for kiosk care deployment data and CHW training curriculum dissemination to other Arizona counties.</div>
+            <div style="margin-top:8px;display:flex;gap:5px;"><span class="chip chip-blue">Exploratory</span><span class="chip chip-gray">Letter of intent Q3 2026</span></div>
+          </div>
+          <div style="text-align:right;">
+            <div class="grant-amount">$800K</div>
+            <div class="grant-meta">Supplemental award target</div>
+          </div>
+        </div>
+        <div class="grant-row">
+          <div class="grant-info">
+            <div class="grant-title">NOAA — Center for Heat Resilient Communities (UArizona partnership)</div>
+            <div class="grant-desc">UArizona is a partner institution on the NIHHIS-funded Center for Heat Resilient Communities. Opportunity to integrate HHRIC community tools and kiosk data into the center's 30-community policy pipeline.</div>
+            <div style="margin-top:8px;display:flex;gap:5px;"><span class="chip chip-blue">Exploratory</span><span class="chip chip-gray">2026–2027</span></div>
+          </div>
+          <div style="text-align:right;">
+            <div class="grant-amount">$500K</div>
+            <div class="grant-meta">Subcontract potential</div>
+          </div>
+        </div>
+        <div class="grant-row">
+          <div class="grant-info">
+            <div class="grant-title">DOE Southwest Urban Corridor IFL — heat health extension</div>
+            <div class="grant-desc">Align wearable and kiosk field data with DOE's $25M Southwest Urban Corridor Integrated Field Laboratory. Health outcomes data for urban heat island intervention research.</div>
+            <div style="margin-top:8px;display:flex;gap:5px;"><span class="chip chip-gray">Scoping</span></div>
+          </div>
+          <div style="text-align:right;">
+            <div class="grant-amount">TBD</div>
+            <div class="grant-meta">Supplement / collaborative</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== REPORT ILLNESS ==================== -->
+  <section id="page-report" class="page">
+    <div class="topbar">
+      <div>
+        <div class="page-title">Report heat illness</div>
+        <div class="page-subtitle">Log a heat-related illness for tracking, outreach follow-up, and HHRIC epidemiological data</div>
+      </div>
+      <div class="topbar-actions">
+        <button class="btn btn-sm">View case tracker</button>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-header"><div class="card-title">Patient information</div></div>
+          <div class="card-body">
+            <div class="form-grid-2">
+              <div class="form-group"><label class="form-label">First name</label><input class="form-control" type="text" placeholder="First name"/></div>
+              <div class="form-group"><label class="form-label">Last name</label><input class="form-control" type="text" placeholder="Last name"/></div>
+            </div>
+            <div class="form-grid-3">
+              <div class="form-group"><label class="form-label">Age</label><input class="form-control" type="number" placeholder="Age"/></div>
+              <div class="form-group"><label class="form-label">Gender</label>
+                <select class="form-control"><option>Select…</option><option>Male</option><option>Female</option><option>Non-binary</option><option>Prefer not to say</option></select>
+              </div>
+              <div class="form-group"><label class="form-label">Language</label>
+                <select class="form-control"><option>English</option><option>Spanish</option><option>Other</option></select>
+              </div>
+            </div>
+            <div class="form-group"><label class="form-label">Population group</label>
+              <select class="form-control"><option>Select…</option><option>Unhoused individual</option><option>Outdoor worker</option><option>Elderly (65+)</option><option>Child under 5</option><option>General public</option></select>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><div class="card-title">Incident details</div></div>
+          <div class="card-body">
+            <div class="form-group"><label class="form-label">Condition / diagnosis</label>
+              <select class="form-control"><option>Select…</option><option>Heat stroke (emergency)</option><option>Heat exhaustion</option><option>Heat cramps</option><option>Dehydration</option><option>Exacerbation of chronic condition</option><option>Other heat-related illness</option></select>
+            </div>
+            <div class="form-group"><label class="form-label">Location found</label><input class="form-control" type="text" placeholder="Address or neighborhood"/></div>
+            <div class="form-group"><label class="form-label">Disposition</label>
+              <select class="form-control"><option>Select…</option><option>Treated on-site, stable</option><option>Transported to cooling health oasis</option><option>Referred to Banner Health ED</option><option>911 / EMS called</option><option>Declined care</option></select>
+            </div>
+            <div class="form-group"><label class="form-label">Wearable participant?</label>
+              <select class="form-control"><option>No</option><option>Yes — alert triggered</option><option>Yes — no alert triggered</option></select>
+            </div>
+            <div class="form-group"><label class="form-label">Clinical notes</label>
+              <textarea class="form-control" placeholder="Risk factors, vitals, follow-up needs, referrals…"></textarea>
+            </div>
+            <button class="btn btn-primary" style="width:100%;margin-top:4px;" onclick="submitReport()">Submit report</button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-header"><div class="card-title">Today's cases</div><span class="chip chip-amber">14 reported</span></div>
+          <div class="card-body-flush">
+            <table class="data-table">
+              <thead><tr><th>Patient</th><th>Condition</th><th>Time</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td><span class="table-name">M.T., 78 · M</span><div class="table-sub">Encanto · Unhoused</div></td><td><span class="chip chip-red" style="font-size:10px;">Heat stroke</span></td><td style="font-size:12px;">9:14 AM</td><td><span class="chip chip-green" style="font-size:10px;">Resolved</span></td></tr>
+                <tr><td><span class="table-name">R.G., 54 · F</span><div class="table-sub">Maryvale · Worker</div></td><td><span class="chip chip-amber" style="font-size:10px;">Exhaustion</span></td><td style="font-size:12px;">10:02 AM</td><td><span class="chip chip-teal" style="font-size:10px;">Consult</span></td></tr>
+                <tr><td><span class="table-name">D.L., 41 · M</span><div class="table-sub">South Mtn · Unhoused</div></td><td><span class="chip chip-amber" style="font-size:10px;">Exhaustion</span></td><td style="font-size:12px;">10:45 AM</td><td><span class="chip chip-green" style="font-size:10px;">Stable</span></td></tr>
+                <tr><td><span class="table-name">A.K., 6 · F</span><div class="table-sub">Encanto Park</div></td><td><span class="chip chip-blue" style="font-size:10px;">Dehydration</span></td><td style="font-size:12px;">11:20 AM</td><td><span class="chip chip-green" style="font-size:10px;">Resolved</span></td></tr>
+                <tr><td><span class="table-name">B.P., 83 · M</span><div class="table-sub">Laveen · Elderly</div></td><td><span class="chip chip-amber" style="font-size:10px;">Chronic exac.</span></td><td style="font-size:12px;">11:55 AM</td><td><span class="chip chip-red" style="font-size:10px;">ED referral</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><div class="card-title">Case distribution — today</div></div>
+          <div class="card-body">
+            <div class="progress-item"><div class="progress-header"><span class="progress-name">Heat exhaustion</span><span class="progress-pct">6</span></div><div class="progress-track"><div class="progress-fill" style="width:43%;background:var(--amber);"></div></div></div>
+            <div class="progress-item"><div class="progress-header"><span class="progress-name">Dehydration</span><span class="progress-pct">4</span></div><div class="progress-track"><div class="progress-fill" style="width:29%;background:var(--blue);"></div></div></div>
+            <div class="progress-item"><div class="progress-header"><span class="progress-name">Heat stroke</span><span class="progress-pct">2</span></div><div class="progress-track"><div class="progress-fill" style="width:14%;background:var(--red);"></div></div></div>
+            <div class="progress-item"><div class="progress-header"><span class="progress-name">Chronic exacerbation</span><span class="progress-pct">2</span></div><div class="progress-track"><div class="progress-fill" style="width:14%;background:var(--purple);"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+</div>
+
+<script>
+function nav(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  const navEl = document.querySelector('[data-page="' + id + '"]');
+  if (navEl) navEl.classList.add('active');
+}
+
+document.querySelectorAll('.nav-item[data-page]').forEach(item => {
+  item.addEventListener('click', () => nav(item.dataset.page));
+});
+
+function switchTab(el, targetId) {
+  el.closest('.page').querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.closest('.page').querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
+  el.classList.add('active');
+  document.getElementById(targetId).style.display = 'block';
+}
+
+function calcScore() {
+  const age = parseInt(document.getElementById('sc-age').value) || 50;
+  const housing = parseInt(document.getElementById('sc-housing').value);
+  const chronic = parseInt(document.getElementById('sc-chronic').value);
+  const meds = parseInt(document.getElementById('sc-meds').value);
+  const outdoor = parseInt(document.getElementById('sc-outdoor').value);
+  const prior = parseInt(document.getElementById('sc-prior').value);
+  let s = 0;
+  if (age >= 75) s += 25; else if (age >= 65) s += 18; else if (age >= 55) s += 10; else s += Math.max(0,(age-18)*0.3);
+  s += housing * 15;
+  s += chronic * 12;
+  s += meds * 10;
+  s += outdoor * 8;
+  s += prior * 10;
+  s = Math.min(100, Math.round(s));
+  document.getElementById('score-val').textContent = s;
+  const circ = 2 * Math.PI * 35;
+  const offset = circ * (1 - s / 100);
+  const arc = document.getElementById('score-arc');
+  arc.setAttribute('stroke-dasharray', circ.toFixed(1));
+  arc.setAttribute('stroke-dashoffset', offset.toFixed(1));
+  const chip = document.getElementById('score-chip');
+  const rec = document.getElementById('score-rec');
+  if (s >= 70) {
+    arc.setAttribute('stroke', '#E24B4A');
+    chip.innerHTML = '<span class="chip chip-red">High risk · Score ' + s + '</span>';
+    rec.textContent = 'Prioritize for immediate outreach. Assign CHW for wellness check. Enroll in wearable biosensor program. Flag for kiosk referral during heat events.';
+  } else if (s >= 45) {
+    arc.setAttribute('stroke', '#EF9F27');
+    chip.innerHTML = '<span class="chip chip-amber">Elevated risk · Score ' + s + '</span>';
+    rec.textContent = 'Schedule proactive wellness check. Provide heat safety education materials in preferred language. Monitor proactively during heat advisories.';
+  } else {
+    arc.setAttribute('stroke', '#3B6D11');
+    chip.innerHTML = '<span class="chip chip-green">Moderate risk · Score ' + s + '</span>';
+    rec.textContent = 'Provide standard heat safety education. Advise on cooling resources and hydration. Re-screen if clinical or housing status changes.';
+  }
+}
+
+function submitReport() {
+  const btn = event.target;
+  btn.textContent = '✓ Report submitted';
+  btn.style.background = '#2E6E45';
+  setTimeout(() => {
+    btn.textContent = 'Submit report';
+    btn.style.background = '';
+  }, 3000);
+}
+
+calcScore();
+</script>
+</body>
+</html>
