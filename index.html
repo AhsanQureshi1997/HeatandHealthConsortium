@@ -554,7 +554,216 @@ textarea.form-control { height: 80px; resize: vertical; }
   .metrics-row { grid-template-columns: repeat(2, 1fr); }
   .kiosk-grid { grid-template-columns: 1fr 1fr; }
 }
+
+/* MAP OVERLAY */
+.map-shell {
+  margin-bottom: 22px;
+}
+.map-card-body {
+  padding: 0;
+}
+.map-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(to right, #fcfaf6, #f6f1e8);
+}
+.map-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.map-topbar-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.map-topbar-sub {
+  font-size: 11px;
+  color: var(--text3);
+}
+.map-wrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  min-height: 430px;
+}
+#overview-map {
+  min-height: 430px;
+  width: 100%;
+}
+.map-sidepanel {
+  border-left: 1px solid var(--border);
+  background: #fcfaf6;
+  padding: 18px;
+}
+.map-sidepanel .section-label {
+  margin-top: 0;
+}
+.map-kpi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.map-kpi {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+}
+.map-kpi-val {
+  font-size: 20px;
+  line-height: 1;
+  font-family: 'Playfair Display', serif;
+  color: var(--text);
+  margin-bottom: 5px;
+}
+.map-kpi-lbl {
+  font-size: 10px;
+  color: var(--text3);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.map-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.map-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text2);
+}
+.map-swatch {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.map-note {
+  font-size: 11px;
+  color: var(--text3);
+  line-height: 1.55;
+  margin-top: 14px;
+}
+.leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.14);
+}
+.leaflet-popup-content {
+  margin: 12px 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.popup-title {
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.popup-sub {
+  color: var(--text2);
+}
+.custom-div-icon {
+  background: transparent;
+  border: none;
+}
+.kiosk-pin {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--green);
+  border: 3px solid rgba(255,255,255,0.95);
+  box-shadow: 0 0 0 2px rgba(46,110,69,0.18);
+}
+.alert-pulse {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid rgba(255,255,255,0.95);
+  box-shadow: 0 0 0 0 rgba(196,88,26,0.45);
+  animation: mapPulse 1.5s infinite;
+}
+@keyframes mapPulse {
+  0% { box-shadow: 0 0 0 0 rgba(196,88,26,0.42); }
+  70% { box-shadow: 0 0 0 12px rgba(196,88,26,0); }
+  100% { box-shadow: 0 0 0 0 rgba(196,88,26,0); }
+}
+@media (max-width: 980px) {
+  .map-wrap { grid-template-columns: 1fr; }
+  .map-sidepanel { border-left: none; border-top: 1px solid var(--border); }
+}
+
+
+/* INTERACTIONS */
+.toast-stack {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.toast {
+  min-width: 260px;
+  max-width: 360px;
+  background: rgba(26,22,18,0.96);
+  color: #fff;
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+  animation: fadeInUp 0.22s ease;
+}
+.toast-title { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+.toast-body { font-size: 12px; color: rgba(255,255,255,0.78); line-height: 1.45; }
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.38);
+  display: none; align-items: center; justify-content: center; z-index: 1300;
+  padding: 20px;
+}
+.modal-backdrop.show { display: flex; }
+.modal-card {
+  width: min(640px, 100%);
+  max-height: 85vh;
+  overflow: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 24px 50px rgba(0,0,0,0.16);
+}
+.modal-head {
+  padding: 18px 22px 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.modal-title { font-size: 17px; font-weight: 600; color: var(--text); }
+.modal-close {
+  border: 0; background: transparent; font-size: 24px; line-height: 1;
+  color: var(--text3); cursor: pointer;
+}
+.modal-body { padding: 18px 22px 22px; }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; }
+.quick-list { display: grid; gap: 10px; }
+.quick-item {
+  padding: 12px 14px; border: 1px solid var(--border); border-radius: 12px; background: #FCFAF7;
+}
+.quick-item-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.quick-item-sub { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
 </style>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
 </head>
 <body>
 <div class="layout">
@@ -648,6 +857,53 @@ textarea.form-control { height: 80px; resize: vertical; }
       </div>
       <div class="heat-banner-action">
         <button class="btn btn-sm btn-ghost-white" onclick="nav('alerts')">View all alerts →</button>
+      </div>
+    </div>
+
+    <div class="card map-shell">
+      <div class="map-topbar">
+        <div class="map-topbar-left">
+          <div>
+            <div class="map-topbar-title">Operational heat-risk map</div>
+            <div class="map-topbar-sub">Spatial overlay of kiosks, live alerts, heat burden, and outreach priority areas across Phoenix</div>
+          </div>
+          <span class="chip chip-accent">Live overlay</span>
+          <span class="chip chip-green">4 kiosks online</span>
+          <span class="chip chip-red">3 active alerts</span>
+        </div>
+        <button class="btn btn-sm" onclick="nav('kiosks')">Open kiosk operations</button>
+      </div>
+      <div class="map-wrap">
+        <div id="overview-map" aria-label="Phoenix heat risk map"></div>
+        <div class="map-sidepanel">
+          <div class="section-label">Map snapshot</div>
+          <div class="map-kpi-grid">
+            <div class="map-kpi">
+              <div class="map-kpi-val">381</div>
+              <div class="map-kpi-lbl">High-risk flagged</div>
+            </div>
+            <div class="map-kpi">
+              <div class="map-kpi-val">87</div>
+              <div class="map-kpi-lbl">Wearables active</div>
+            </div>
+            <div class="map-kpi">
+              <div class="map-kpi-val">4</div>
+              <div class="map-kpi-lbl">Cooling oases</div>
+            </div>
+            <div class="map-kpi">
+              <div class="map-kpi-val">23</div>
+              <div class="map-kpi-lbl">Alerts resolved today</div>
+            </div>
+          </div>
+          <div class="section-label">Legend</div>
+          <div class="map-legend">
+            <div class="map-legend-row"><span class="map-swatch" style="background:#b33030;"></span>Severe heat burden zone</div>
+            <div class="map-legend-row"><span class="map-swatch" style="background:#c4581a;"></span>Priority outreach corridor</div>
+            <div class="map-legend-row"><span class="map-swatch" style="background:#2e6e45;"></span>Cooling health oasis</div>
+            <div class="map-legend-row"><span class="map-swatch" style="background:#1b5c8a;"></span>Wearable participant cluster</div>
+          </div>
+          <div class="map-note">Best use: let leadership see where heat risk, active monitoring, and cooling access intersect. This makes the rest of the dashboard feel deployed instead of conceptual.</div>
+        </div>
       </div>
     </div>
 
@@ -1623,6 +1879,18 @@ textarea.form-control { height: 80px; resize: vertical; }
 </main>
 </div>
 
+<div class="toast-stack" id="toast-stack"></div>
+<div class="modal-backdrop" id="app-modal" aria-hidden="true">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div class="modal-title" id="modal-title">Details</div>
+      <button class="modal-close" id="modal-close" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+
 <script>
 function nav(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1630,6 +1898,9 @@ function nav(id) {
   document.getElementById('page-' + id).classList.add('active');
   const navEl = document.querySelector('[data-page="' + id + '"]');
   if (navEl) navEl.classList.add('active');
+  if (id === 'overview' && window.__overviewMap) {
+    setTimeout(() => window.__overviewMap.invalidateSize(), 100);
+  }
 }
 
 document.querySelectorAll('.nav-item[data-page]').forEach(item => {
@@ -1681,15 +1952,273 @@ function calcScore() {
   }
 }
 
+function showToast(title, body = '') {
+  const stack = document.getElementById('toast-stack');
+  if (!stack) return;
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = '<div class="toast-title">' + title + '</div><div class="toast-body">' + body + '</div>';
+  stack.appendChild(toast);
+  setTimeout(() => toast.remove(), 3200);
+}
+
+function openModal(title, bodyHtml) {
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-body').innerHTML = bodyHtml;
+  document.getElementById('app-modal').classList.add('show');
+}
+
+function closeModal() {
+  document.getElementById('app-modal').classList.remove('show');
+}
+
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('app-modal').addEventListener('click', e => {
+  if (e.target.id === 'app-modal') closeModal();
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+function downloadTextFile(filename, text) {
+  const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 500);
+}
+
+function exportCurrentView() {
+  const activePage = document.querySelector('.page.active');
+  const pageName = activePage ? activePage.id.replace('page-', '') : 'dashboard';
+  const cards = activePage ? activePage.querySelectorAll('.metric-card, .card, .kiosk-card, .partner-row, .module-row, .grant-row').length : 0;
+  const text = [
+    'HHRIC dashboard export',
+    'Generated: ' + new Date().toLocaleString(),
+    'View: ' + pageName,
+    'Components captured: ' + cards,
+    '',
+    'This is a quick exported summary generated from the interactive dashboard.'
+  ].join('\n');
+  downloadTextFile('hhric_' + pageName + '_export.txt', text);
+  showToast('Report exported', 'A quick summary file for the current view was downloaded.');
+}
+
 function submitReport() {
   const btn = event.target;
   btn.textContent = '✓ Report submitted';
   btn.style.background = '#2E6E45';
+  showToast('Case report submitted', 'The case was added to the incident queue for review.');
   setTimeout(() => {
     btn.textContent = 'Submit report';
     btn.style.background = '';
   }, 3000);
 }
+
+function buildButtonInteractions() {
+  document.querySelectorAll('button.btn').forEach(btn => {
+    if (btn.dataset.bound === '1') return;
+    btn.dataset.bound = '1';
+    btn.addEventListener('click', function(e) {
+      if (this.getAttribute('onclick')) return;
+      const label = this.textContent.trim();
+      if (label === 'Export report' || label === 'Export flagged list') {
+        exportCurrentView();
+        return;
+      }
+      if (label === 'View all') {
+        nav('alerts');
+        showToast('Moved to live alerts', 'Showing all active field alerts and response workflows.');
+        return;
+      }
+      if (label === 'Dispatch team' || label === 'Track team') {
+        this.textContent = 'Team en route';
+        this.disabled = true;
+        this.style.opacity = '0.9';
+        showToast('Outreach team updated', 'Field team ETA refreshed and alert escalated for follow-up.');
+        return;
+      }
+      if (label === 'Join consult') {
+        openModal('Teleconsult session', `<div class="quick-list"><div class="quick-item"><div class="quick-item-title">Maryvale consult room</div><div class="quick-item-sub">Hydration coaching started. Nurse practitioner connected. Device feed stable.</div></div><div class="quick-item"><div class="quick-item-title">Recommended next steps</div><div class="quick-item-sub">Continue remote evaluation, confirm safe transport plan, and repeat symptom check in 15 minutes.</div></div></div><div class="modal-actions"><button class="btn" onclick="closeModal()">Close</button><button class="btn btn-primary" onclick="showToast('Consult joined', 'Telehealth room opened and care note marked in the dashboard.'); closeModal();">Launch consult</button></div>`);
+        return;
+      }
+      if (label === 'View profile') {
+        nav('wearables');
+        showToast('Participant profile opened', 'Moved to the wearable monitoring workspace.');
+        return;
+      }
+      if (label === 'Enroll participant') {
+        const metric = document.querySelector('.metric-card .metric-value');
+        if (metric) metric.textContent = String((parseInt(metric.textContent, 10) || 312) + 1);
+        showToast('Participant enrolled', 'A new participant was added to the wearable biosensor cohort.');
+        return;
+      }
+      if (label === 'Edit') {
+        openModal('Alert thresholds', `<div class="form-grid-3"><div class="form-group"><label class="form-label">Core temp threshold</label><input class="form-control" value="103.5°F"></div><div class="form-group"><label class="form-label">HR threshold</label><input class="form-control" value="120 bpm"></div><div class="form-group"><label class="form-label">Response timer</label><input class="form-control" value="10 min"></div></div><div class="modal-actions"><button class="btn" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="showToast('Thresholds updated', 'Alert logic was refreshed for the wearable program.'); closeModal();">Save changes</button></div>`);
+        return;
+      }
+      if (label === 'Add site') {
+        openModal('Propose new kiosk site', `<div class="form-grid-2"><div class="form-group"><label class="form-label">Site name</label><input class="form-control" placeholder="West Valley Transit Hub"></div><div class="form-group"><label class="form-label">Priority area</label><input class="form-control" placeholder="Maryvale corridor"></div></div><div class="form-group"><label class="form-label">Rationale</label><textarea class="form-control" placeholder="Describe heat burden, foot traffic, and access gaps."></textarea></div><div class="modal-actions"><button class="btn" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="showToast('Site proposal added', 'The kiosk expansion concept was added to the operations queue.'); closeModal();">Save proposal</button></div>`);
+        return;
+      }
+      if (label === 'Request update') {
+        showToast('Model update requested', 'A refresh request was sent for the heat susceptibility model review queue.');
+        return;
+      }
+      if (label === 'Add module') {
+        showToast('Module drafted', 'A new education module placeholder was created in the training library.');
+        return;
+      }
+      if (label === 'Download') {
+        const row = this.closest('.module-row, .partner-row, .grant-row, .card, .quick-item') || this.parentElement;
+        const titleEl = row.querySelector('.module-title, .grant-title, .card-title, .quick-item-title') || row;
+        const title = (titleEl.textContent || 'resource').trim().toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
+        downloadTextFile((title || 'resource') + '.txt', 'Downloaded resource from HHRIC dashboard: ' + (titleEl.textContent || 'resource'));
+        showToast('Resource downloaded', 'A simple file was generated for this dashboard resource.');
+        return;
+      }
+      if (label === 'View module') {
+        openModal('Training module', `<div class="quick-list"><div class="quick-item"><div class="quick-item-title">Module summary</div><div class="quick-item-sub">This training block covers heat illness recognition, multilingual patient education, and referral pathways.</div></div><div class="quick-item"><div class="quick-item-title">Estimated completion time</div><div class="quick-item-sub">15 minutes with quiz checkpoint and printable handout.</div></div></div><div class="modal-actions"><button class="btn" onclick="closeModal()">Close</button></div>`);
+        return;
+      }
+      if (label === 'Add opportunity') {
+        showToast('Funding opportunity saved', 'The grant pipeline was updated with a new opportunity card.');
+        return;
+      }
+      if (label === 'View case tracker') {
+        nav('report');
+        showToast('Case tracker opened', 'Moved to the illness reporting and triage workspace.');
+        return;
+      }
+      showToast(label, 'This control is now active.');
+    });
+  });
+}
+
+function initOverviewMap() {
+  const mapEl = document.getElementById('overview-map');
+  if (!mapEl || mapEl.dataset.ready === '1' || typeof L === 'undefined') return;
+
+  const map = L.map('overview-map', {
+    zoomControl: true,
+    scrollWheelZoom: false
+  }).setView([33.4484, -112.0740], 10);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  const severeZone = {
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [[
+        [-112.24, 33.54],
+        [-112.12, 33.54],
+        [-112.08, 33.47],
+        [-112.15, 33.39],
+        [-112.27, 33.42],
+        [-112.24, 33.54]
+      ]]
+    }
+  };
+
+  const priorityZone = {
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [[
+        [-112.12, 33.51],
+        [-111.97, 33.51],
+        [-111.97, 33.39],
+        [-112.08, 33.36],
+        [-112.14, 33.43],
+        [-112.12, 33.51]
+      ]]
+    }
+  };
+
+  L.geoJSON(severeZone, {
+    style: { color: '#B33030', weight: 1.5, fillColor: '#B33030', fillOpacity: 0.22 }
+  }).addTo(map).bindPopup('<div class="popup-title">Severe heat burden zone</div><div class="popup-sub">Concentrated risk corridor with elevated outreach priority, low cooling access, and higher ED utilization.</div>');
+
+  L.geoJSON(priorityZone, {
+    style: { color: '#C4581A', weight: 1.5, dashArray: '6 5', fillColor: '#C4581A', fillOpacity: 0.14 }
+  }).addTo(map).bindPopup('<div class="popup-title">Priority outreach corridor</div><div class="popup-sub">Recommended area for proactive wellness checks, device deployment, and multilingual education.</div>');
+
+  const kioskIcon = L.divIcon({
+    className: 'custom-div-icon',
+    html: '<div class="kiosk-pin"></div>',
+    iconSize: [18, 18],
+    iconAnchor: [9, 9]
+  });
+
+  const pulseIcon = L.divIcon({
+    className: 'custom-div-icon',
+    html: '<div class="alert-pulse"></div>',
+    iconSize: [18, 18],
+    iconAnchor: [9, 9]
+  });
+
+  [
+    { name: 'Downtown Oasis', coords: [33.4515, -112.0737], consults: 102, notes: 'Near highest foot traffic and same-day outreach volume.' },
+    { name: 'Maryvale Oasis', coords: [33.4820, -112.2360], consults: 76, notes: 'Strong demand during afternoon heat peaks.' },
+    { name: 'South Phoenix Oasis', coords: [33.3925, -112.0730], consults: 63, notes: 'Useful for transit-adjacent wellness checks.' },
+    { name: 'Mesa Gateway Oasis', coords: [33.4223, -111.8226], consults: 77, notes: 'Extends monitoring east of central Phoenix.' }
+  ].forEach(site => {
+    L.marker(site.coords, { icon: kioskIcon }).addTo(map).bindPopup(
+      '<div class="popup-title">' + site.name + '</div>' +
+      '<div class="popup-sub">Monthly consults: ' + site.consults + '<br>' + site.notes + '</div>'
+    );
+  });
+
+  [
+    { coords: [33.468, -112.104], members: 31 },
+    { coords: [33.413, -112.061], members: 24 },
+    { coords: [33.497, -111.991], members: 18 }
+  ].forEach(cluster => {
+    L.circle(cluster.coords, {
+      radius: 2100,
+      color: '#1B5C8A',
+      weight: 1.25,
+      fillColor: '#1B5C8A',
+      fillOpacity: 0.12
+    }).addTo(map).bindPopup(
+      '<div class="popup-title">Wearable participant cluster</div>' +
+      '<div class="popup-sub">Approx. ' + cluster.members + ' enrolled individuals under active biosensor monitoring.</div>'
+    );
+  });
+
+  [
+    { label: 'Core temp spike alert', coords: [33.459, -112.089], severity: 'Immediate follow-up' },
+    { label: 'Hydration non-response', coords: [33.404, -112.047], severity: 'CHW outreach queued' },
+    { label: 'Repeat heat symptom report', coords: [33.491, -112.012], severity: 'Telemed escalation suggested' }
+  ].forEach(alert => {
+    L.marker(alert.coords, { icon: pulseIcon }).addTo(map).bindPopup(
+      '<div class="popup-title">' + alert.label + '</div>' +
+      '<div class="popup-sub">' + alert.severity + '</div>'
+    );
+  });
+
+  window.__overviewMap = map;
+
+  const bounds = L.latLngBounds([
+    [33.33, -112.30],
+    [33.57, -111.80]
+  ]);
+  map.fitBounds(bounds, { padding: [16, 16] });
+
+  mapEl.dataset.ready = '1';
+  setTimeout(() => map.invalidateSize(), 120);
+}
+
+initOverviewMap();
+buildButtonInteractions();
 
 calcScore();
 </script>
