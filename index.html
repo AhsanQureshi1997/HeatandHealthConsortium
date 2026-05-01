@@ -74,7 +74,7 @@ body {
 .logo-mark {
   width: 34px; height: 34px;
   border-radius: 8px;
-  background: var(--accent);
+  background: linear-gradient(135deg,#1A5E35,#1D7A44);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
@@ -525,7 +525,7 @@ textarea.form-control { height: 80px; resize: vertical; }
 
 /* HEAT INDEX BANNER */
 .heat-banner {
-  background: var(--accent);
+  background: linear-gradient(135deg, #155A2F, #1B7A40);
   border-radius: var(--radius-lg);
   padding: 16px 22px;
   display: flex; align-items: center; gap: 16px;
@@ -759,10 +759,110 @@ textarea.form-control { height: 80px; resize: vertical; }
 .quick-item-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
 .quick-item-sub { font-size: 12px; color: var(--text2); line-height: 1.5; }
 
+
+/* PATIENT PROFILE MODAL */
+.patient-click { cursor: pointer; }
+.patient-click:hover { background: #FFF7EF !important; }
+.profile-hero {
+  display: grid;
+  grid-template-columns: 118px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+  margin-bottom: 18px;
+}
+.profile-photo {
+  width: 118px;
+  height: 118px;
+  border-radius: 20px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  box-shadow: var(--shadow);
+}
+.profile-name { font-size: 20px; font-weight: 650; color: var(--text); line-height: 1.2; margin-bottom: 5px; }
+.profile-meta { font-size: 12.5px; color: var(--text2); line-height: 1.55; margin-bottom: 10px; }
+.profile-chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+.profile-panel { border: 1px solid var(--border); border-radius: 14px; padding: 13px 14px; background: #FCFAF7; }
+.profile-panel-title { font-size: 11px; font-weight: 700; color: var(--text3); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 7px; }
+.profile-panel-body { font-size: 12.5px; color: var(--text2); line-height: 1.5; }
+.profile-vitals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+.profile-vital { background: var(--surface2); border-radius: 12px; padding: 10px; text-align: center; }
+.profile-vital-val { font-size: 18px; font-family: 'DM Mono', monospace; color: var(--text); font-weight: 600; }
+.profile-vital-lbl { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 3px; }
+@media (max-width: 720px) {
+  .profile-hero, .profile-grid { grid-template-columns: 1fr; }
+  .profile-vitals { grid-template-columns: 1fr; }
+}
+
 </style>
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+
+<style>
+.outreach-car-marker {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--accent);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+.team-profile-grid {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+.team-photo {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+.team-detail-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  background: #FCFAF7;
+  margin-bottom: 10px;
+}
+.team-detail-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 6px;
+}
+.team-member-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+.team-member-row:hover {
+  border-color: var(--accent);
+}
+.team-member-row img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+</style>
 
 </head>
 <body>
@@ -840,20 +940,20 @@ textarea.form-control { height: 80px; resize: vertical; }
     <div class="topbar">
       <div>
         <div class="page-title">Good morning, Dr. Spielberg</div>
-        <div class="page-subtitle">Phoenix, AZ · Monday, April 20, 2026 · Heat season active</div>
+        <div class="page-subtitle">Phoenix, AZ · Friday, May 1, 2026 · 87°F · Sunny · Pre-season</div>
       </div>
       <div class="topbar-actions">
-        <span class="chip chip-red"><span class="chip-dot"></span>Excessive heat warning</span>
+        <span class="chip chip-green"><span class="chip-dot"></span>No active heat advisory</span>
         <button class="btn btn-sm">Export report</button>
       </div>
     </div>
 
     <div class="heat-banner">
-      <div class="heat-banner-temp">107°F</div>
+      <div class="heat-banner-temp">87°F</div>
       <div class="heat-banner-info">
-        <div class="heat-banner-label">Current heat index · Phoenix metro</div>
-        <div class="heat-banner-status">Excessive heat warning in effect through Thursday 8 PM</div>
-        <div class="heat-banner-sub">Maricopa County has the highest heat-related death rate in the United States</div>
+        <div class="heat-banner-label">Current temperature · Phoenix, AZ · Live · May 1, 2026</div>
+        <div class="heat-banner-status">Sunny · Pre-season · No active heat advisory</div>
+        <div class="heat-banner-sub">This week's high: 93°F Sunday · Heat season typically begins June · HHRIC full protocol activates at 105°F+</div>
       </div>
       <div class="heat-banner-action">
         <button class="btn btn-sm btn-ghost-white" onclick="nav('alerts')">View all alerts →</button>
@@ -869,7 +969,7 @@ textarea.form-control { height: 80px; resize: vertical; }
           </div>
           <span class="chip chip-accent">Live overlay</span>
           <span class="chip chip-green">4 kiosks online</span>
-          <span class="chip chip-red">3 active alerts</span>
+          <span class="chip chip-blue">Pre-season monitoring</span>
         </div>
         <button class="btn btn-sm" onclick="nav('kiosks')">Open kiosk operations</button>
       </div>
@@ -1053,15 +1153,15 @@ textarea.form-control { height: 80px; resize: vertical; }
         <div class="page-subtitle">Active wearable alerts, NWS warnings, and field reports</div>
       </div>
       <div class="topbar-actions">
-        <span class="chip chip-red"><span class="chip-dot"></span>3 active alerts</span>
+        <span class="chip chip-blue">0 active alerts · Pre-season</span>
         <button class="btn btn-sm btn-primary">Dispatch team</button>
       </div>
     </div>
 
     <div class="grid-2" style="margin-bottom:20px;">
-      <div class="metric-card"><div class="metric-label">Phoenix heat index now</div><div class="metric-value" style="color:var(--red);">107°F</div><div class="metric-sub">Feels like 113°F</div></div>
-      <div class="metric-card"><div class="metric-label">Peak temp forecast (Tue)</div><div class="metric-value" style="color:var(--red);">112°F</div><div class="metric-sub">Excessive heat warning</div></div>
-      <div class="metric-card"><div class="metric-label">Wearable alerts today</div><div class="metric-value">3</div><div class="metric-sub">All devices responding</div></div>
+      <div class="metric-card"><div class="metric-label">Phoenix temp right now</div><div class="metric-value" style="color:var(--green);">87°F</div><div class="metric-sub">Sunny · Live · May 1, 2026</div></div>
+      <div class="metric-card"><div class="metric-label">This week's peak (Sun)</div><div class="metric-value" style="color:var(--amber);">93°F</div><div class="metric-sub">Pre-season · No warning</div></div>
+      <div class="metric-card"><div class="metric-label">Wearable alerts today</div><div class="metric-value">0</div><div class="metric-sub">Pre-season · monitoring active</div></div>
       <div class="metric-card"><div class="metric-label">Unhoused deaths 2024 AZ</div><div class="metric-value">~50%</div><div class="metric-sub">Of all heat deaths</div></div>
     </div>
 
@@ -1128,13 +1228,12 @@ textarea.form-control { height: 80px; resize: vertical; }
             <tr><th>Day</th><th>High</th><th>Heat index</th><th>Risk level</th><th>Recommended action</th></tr>
           </thead>
           <tbody>
-            <tr><td><strong>Mon Apr 20</strong></td><td>107°F</td><td>113°F</td><td><span class="chip chip-red">Extreme</span></td><td>Full kiosk protocol · All CHWs deployed</td></tr>
-            <tr><td>Tue Apr 21</td><td>112°F</td><td>118°F</td><td><span class="chip chip-red">Extreme</span></td><td>Activate extended kiosk hours · Street medicine standby</td></tr>
-            <tr><td>Wed Apr 22</td><td>110°F</td><td>115°F</td><td><span class="chip chip-red">Extreme</span></td><td>Continue full protocol</td></tr>
-            <tr><td>Thu Apr 23</td><td>104°F</td><td>108°F</td><td><span class="chip chip-amber">High</span></td><td>Maintain kiosk ops · Monitor wearables</td></tr>
-            <tr><td>Fri Apr 24</td><td>99°F</td><td>103°F</td><td><span class="chip chip-amber">Elevated</span></td><td>Standard protocol</td></tr>
-            <tr><td>Sat Apr 25</td><td>94°F</td><td>97°F</td><td><span class="chip chip-blue">Moderate</span></td><td>Routine operations</td></tr>
-            <tr><td>Sun Apr 26</td><td>91°F</td><td>93°F</td><td><span class="chip chip-green">Normal</span></td><td>Routine operations</td></tr>
+            <tr><td><strong>Fri May 1 (today)</strong></td><td>89°F</td><td>90°F</td><td><span class="chip chip-green">Normal</span></td><td>Routine pre-season ops · Wearable enrollment ongoing</td></tr>
+            <tr><td>Sat May 2</td><td>93°F</td><td>94°F</td><td><span class="chip chip-green">Normal</span></td><td>Routine operations · 5% chance of rain</td></tr>
+            <tr><td>Sun May 3</td><td>93°F</td><td>95°F</td><td><span class="chip chip-blue">Moderate</span></td><td>Monitor wearables · Prep kiosks · 10% rain</td></tr>
+            <tr><td>Mon May 4</td><td>84°F</td><td>85°F</td><td><span class="chip chip-green">Normal</span></td><td>Routine operations</td></tr>
+            <tr><td>Tue May 5</td><td>77°F</td><td>78°F</td><td><span class="chip chip-green">Normal</span></td><td>Routine operations</td></tr>
+            <tr><td colspan="5" style="font-size:12px;color:var(--text3);padding:10px 16px;font-style:italic;">Heat season (June–September): 105–120°F. Full protocol activates at 105°F+. Source: live weather API · May 1, 2026.</td></tr>
           </tbody>
         </table>
       </div>
@@ -2020,82 +2119,384 @@ function submitReport() {
   }, 3000);
 }
 
+
+const patientProfiles = {
+  '044': {
+    name: 'Marcus T.', age: 62, sex: 'Male', id: '#044', device: 'W-044', neighborhood: 'Encanto', status: 'Critical alert', risk: '92', group: 'Unhoused individual', language: 'English', photo: 'https://randomuser.me/api/portraits/men/75.jpg',
+    chips: ['Heat stroke risk', 'Unhoused', 'K1 referral', 'EMS watch'],
+    living: 'Usually stays near Encanto Park and the Human Services Campus corridor. Limited cooling access during afternoon hours. Outreach team has difficulty reaching him by phone.',
+    medical: 'Hypertension, chronic kidney disease risk, prior heat exhaustion last summer, possible limited medication access. Heat susceptibility score is high because of age, housing status, and prior illness.',
+    vitals: [['104.1°F', 'Core temp'], ['122 bpm', 'Heart rate'], ['18 min', 'Sustained alert']],
+    history: 'Resolved heat stroke alert at K1 after cooling protocol, oral fluids when safe, and EMS standby. Needs follow-up check within 24 hours.',
+    plan: 'Keep wearable active, confirm safe night location, assign CHW check-in tomorrow morning, and review medications during next kiosk visit.'
+  },
+  '071': {
+    name: 'Rosa G.', age: 58, sex: 'Female', id: '#071', device: 'W-071', neighborhood: 'Maryvale', status: 'Teleconsult active', risk: '76', group: 'Outdoor worker', language: 'Spanish preferred', photo: 'https://randomuser.me/api/portraits/women/63.jpg',
+    chips: ['Heat exhaustion', 'Outdoor worker', 'Spanish', 'K2 consult'],
+    living: 'Lives with adult daughter and two grandchildren in Maryvale. Works outdoors during part of the day and has inconsistent access to shaded rest breaks.',
+    medical: 'Type 2 diabetes, hypertension, and diuretic use. Reports dizziness during work shifts when temperatures rise quickly.',
+    vitals: [['101.8°F', 'Skin temp'], ['108 bpm', 'Heart rate'], ['Low', 'Hydration']],
+    history: 'Telemedicine consult started at Maryvale K2. Oral hydration began 6 minutes ago. Patient reports dizziness improving.',
+    plan: 'Complete symptom recheck in 15 minutes, provide Spanish heat safety instructions, and document employer heat exposure risk.'
+  },
+  '109': {
+    name: 'Benjamin P.', age: 71, sex: 'Male', id: '#109', device: 'W-109', neighborhood: 'South Mountain', status: 'Early warning', risk: '84', group: 'Elderly, lives alone', language: 'English', photo: 'https://randomuser.me/api/portraits/men/79.jpg',
+    chips: ['Early warning', 'Lives alone', 'K3 relocation', 'High risk'],
+    living: 'Lives alone in South Mountain Village. Has air conditioning but reports avoiding use because of utility cost. Neighbor sometimes checks in during heat events.',
+    medical: 'Heart failure, COPD, hypertension, and age-related heat vulnerability. Recent heat susceptibility score is high because of cardiopulmonary disease and living alone.',
+    vitals: [['99.9°F', 'Core temp'], ['94 bpm', 'Heart rate'], ['15 min', 'Pattern detected']],
+    history: 'Pre-symptomatic pattern detected. CHW call placed. Participant agreed to relocate to K3 cooling health oasis.',
+    plan: 'Confirm arrival at K3, review medication list, arrange utility assistance referral, and schedule proactive calls during heat advisories.'
+  },
+  '023': {
+    name: 'Daniel L.', age: 41, sex: 'Male', id: '#023', device: 'W-023', neighborhood: 'South Mountain', status: 'Stable', risk: '61', group: 'Unhoused individual', language: 'English', photo: 'https://randomuser.me/api/portraits/men/46.jpg',
+    chips: ['Stable', 'Unhoused', 'Cooling referral'],
+    living: 'Unsheltered near South Mountain transit corridor. Uses cooling centers intermittently but often misses follow-up appointments.',
+    medical: 'Asthma and dehydration risk. No current critical wearable alert.',
+    vitals: [['98.6°F', 'Core temp'], ['78 bpm', 'Heart rate'], ['3 min', 'Last ping']],
+    history: 'Evaluated for heat exhaustion earlier today and now stable.',
+    plan: 'Offer K3 transport voucher, replace hydration supplies, and repeat wearable check this evening.'
+  },
+  '058': {
+    name: 'Amina K.', age: 6, sex: 'Female', id: '#058', device: 'W-058', neighborhood: 'Encanto Park', status: 'Normal', risk: '43', group: 'Child under 5 household', language: 'English', photo: 'https://randomuser.me/api/portraits/women/12.jpg',
+    chips: ['Pediatric household', 'Dehydration resolved', 'Family education'],
+    living: 'Lives with parents and siblings near Encanto Park. Family uses public transit and outdoor parks during afternoons.',
+    medical: 'Recent dehydration event, otherwise no major chronic conditions documented in prototype data.',
+    vitals: [['98.9°F', 'Core temp'], ['82 bpm', 'Heart rate'], ['4 min', 'Last ping']],
+    history: 'Dehydration case resolved after oral fluids and family counseling.',
+    plan: 'Send caregiver education, confirm pediatric follow-up if symptoms return, and provide cooling site map.'
+  },
+  '091': {
+    name: 'Lena S.', age: 49, sex: 'Female', id: '#091', device: 'W-091', neighborhood: 'Maryvale', status: 'Normal', risk: '55', group: 'Outdoor worker', language: 'English', photo: 'https://randomuser.me/api/portraits/women/49.jpg',
+    chips: ['Outdoor worker', 'Normal vitals', 'Education due'],
+    living: 'Lives in Maryvale and works split outdoor shifts. Has reliable phone access but limited paid time for clinic visits.',
+    medical: 'Obesity, hypertension risk, and recurrent dehydration symptoms during peak summer work days.',
+    vitals: [['99.1°F', 'Core temp'], ['80 bpm', 'Heart rate'], ['5 min', 'Last ping']],
+    history: 'No active alert. Enrolled for pre-season monitoring.',
+    plan: 'Provide workplace heat plan template and schedule wearable calibration before June.'
+  },
+  'MT': null, 'RG': null, 'DL': null, 'AK': null, 'BP': null
+};
+patientProfiles.MT = patientProfiles['044'];
+patientProfiles.RG = patientProfiles['071'];
+patientProfiles.DL = patientProfiles['023'];
+patientProfiles.AK = patientProfiles['058'];
+patientProfiles.BP = patientProfiles['109'];
+
+function makeProfilePhoto(initials, bg, fg) {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240"><rect width="240" height="240" rx="34" fill="${fg}"/><circle cx="120" cy="86" r="46" fill="${bg}" opacity="0.88"/><path d="M45 220c8-54 43-82 75-82s67 28 75 82" fill="${bg}" opacity="0.88"/><text x="120" y="218" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#ffffff">${initials}</text></svg>`;
+  return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+}
+
+function chipClassFor(text) {
+  const t = text.toLowerCase();
+  if (t.includes('critical') || t.includes('stroke') || t.includes('high')) return 'chip-red';
+  if (t.includes('warning') || t.includes('exhaustion') || t.includes('outdoor')) return 'chip-amber';
+  if (t.includes('k1') || t.includes('k2') || t.includes('k3') || t.includes('consult')) return 'chip-blue';
+  if (t.includes('stable') || t.includes('normal') || t.includes('resolved')) return 'chip-green';
+  return 'chip-gray';
+}
+
+function openPatientProfile(key) {
+  const p = patientProfiles[key] || patientProfiles[String(key).replace('#','')];
+  if (!p) return;
+  const chips = p.chips.map(c => `<span class="chip ${chipClassFor(c)}">${c}</span>`).join('');
+  const vitals = p.vitals.map(v => `<div class="profile-vital"><div class="profile-vital-val">${v[0]}</div><div class="profile-vital-lbl">${v[1]}</div></div>`).join('');
+  openModal(`${p.name} ${p.id}`, `
+    <div class="profile-hero">
+      <div><img class="profile-photo" src="${p.photo}" alt="Profile picture for ${p.name}"><div style="font-size:10px;color:var(--text3);margin-top:6px;text-align:center;">Demo placeholder photo</div></div>
+      <div>
+        <div class="profile-name">${p.name}</div>
+        <div class="profile-meta">${p.age} years old · ${p.sex} · ${p.neighborhood}<br>Device ${p.device} · Heat risk score ${p.risk} · ${p.status}</div>
+        <div class="profile-chip-row">${chips}</div>
+        <div class="profile-vitals">${vitals}</div>
+      </div>
+    </div>
+    <div class="profile-grid">
+      <div class="profile-panel"><div class="profile-panel-title">Living situation</div><div class="profile-panel-body">${p.living}</div></div>
+      <div class="profile-panel"><div class="profile-panel-title">Medical context</div><div class="profile-panel-body">${p.medical}</div></div>
+      <div class="profile-panel"><div class="profile-panel-title">Recent event</div><div class="profile-panel-body">${p.history}</div></div>
+      <div class="profile-panel"><div class="profile-panel-title">Recommended next step</div><div class="profile-panel-body">${p.plan}</div></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeModal()">Close</button>
+      <button class="btn" onclick="showToast('Care note drafted', 'A brief profile summary was added to the outreach note queue.'); closeModal();">Draft note</button>
+      <button class="btn btn-primary" onclick="showToast('Outreach queued', 'CHW follow-up task created for ${p.name}.'); closeModal();">Queue outreach</button>
+    </div>
+  `);
+}
+
+function setupPatientProfileClicks() {
+  const mappings = [
+    ['#044','044'], ['#071','071'], ['#109','109'], ['#023','023'], ['#058','058'], ['#091','091'],
+    ['M.T.','MT'], ['R.G.','RG'], ['D.L.','DL'], ['A.K.','AK'], ['B.P.','BP']
+  ];
+  document.querySelectorAll('.data-table tbody tr').forEach(row => {
+    const text = row.textContent;
+    const match = mappings.find(([needle]) => text.includes(needle));
+    if (!match || row.dataset.profileBound === '1') return;
+    row.dataset.profileBound = '1';
+    row.dataset.profileKey = match[1];
+    row.classList.add('patient-click');
+    row.title = 'Click to open patient profile';
+    row.addEventListener('click', e => {
+      if (e.target.closest('button, a, input, select, textarea')) return;
+      openPatientProfile(row.dataset.profileKey);
+    });
+  });
+}
+
 function buildButtonInteractions() {
-  document.querySelectorAll('button.btn').forEach(btn => {
+  document.querySelectorAll('button.btn, .pillar-card[onclick]').forEach(btn => {
     if (btn.dataset.bound === '1') return;
     btn.dataset.bound = '1';
+    if (!btn.tagName.toLowerCase().includes('button')) return;
     btn.addEventListener('click', function(e) {
       if (this.getAttribute('onclick')) return;
       const label = this.textContent.trim();
+
+      // ── EXPORT ─────────────────────────────────────────────────
       if (label === 'Export report' || label === 'Export flagged list') {
-        exportCurrentView();
-        return;
+        exportCurrentView(); return;
       }
+
+      // ── NAVIGATION ──────────────────────────────────────────────
       if (label === 'View all') {
         nav('alerts');
-        showToast('Moved to live alerts', 'Showing all active field alerts and response workflows.');
-        return;
-      }
-      if (label === 'Dispatch team' || label === 'Track team') {
-        this.textContent = 'Team en route';
-        this.disabled = true;
-        this.style.opacity = '0.9';
-        showToast('Outreach team updated', 'Field team ETA refreshed and alert escalated for follow-up.');
-        return;
-      }
-      if (label === 'Join consult') {
-        openModal('Teleconsult session', `<div class="quick-list"><div class="quick-item"><div class="quick-item-title">Maryvale consult room</div><div class="quick-item-sub">Hydration coaching started. Nurse practitioner connected. Device feed stable.</div></div><div class="quick-item"><div class="quick-item-title">Recommended next steps</div><div class="quick-item-sub">Continue remote evaluation, confirm safe transport plan, and repeat symptom check in 15 minutes.</div></div></div><div class="modal-actions"><button class="btn" onclick="closeModal()">Close</button><button class="btn btn-primary" onclick="showToast('Consult joined', 'Telehealth room opened and care note marked in the dashboard.'); closeModal();">Launch consult</button></div>`);
-        return;
-      }
-      if (label === 'View profile') {
-        nav('wearables');
-        showToast('Participant profile opened', 'Moved to the wearable monitoring workspace.');
-        return;
-      }
-      if (label === 'Enroll participant') {
-        const metric = document.querySelector('.metric-card .metric-value');
-        if (metric) metric.textContent = String((parseInt(metric.textContent, 10) || 312) + 1);
-        showToast('Participant enrolled', 'A new participant was added to the wearable biosensor cohort.');
-        return;
-      }
-      if (label === 'Edit') {
-        openModal('Alert thresholds', `<div class="form-grid-3"><div class="form-group"><label class="form-label">Core temp threshold</label><input class="form-control" value="103.5°F"></div><div class="form-group"><label class="form-label">HR threshold</label><input class="form-control" value="120 bpm"></div><div class="form-group"><label class="form-label">Response timer</label><input class="form-control" value="10 min"></div></div><div class="modal-actions"><button class="btn" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="showToast('Thresholds updated', 'Alert logic was refreshed for the wearable program.'); closeModal();">Save changes</button></div>`);
-        return;
-      }
-      if (label === 'Add site') {
-        openModal('Propose new kiosk site', `<div class="form-grid-2"><div class="form-group"><label class="form-label">Site name</label><input class="form-control" placeholder="West Valley Transit Hub"></div><div class="form-group"><label class="form-label">Priority area</label><input class="form-control" placeholder="Maryvale corridor"></div></div><div class="form-group"><label class="form-label">Rationale</label><textarea class="form-control" placeholder="Describe heat burden, foot traffic, and access gaps."></textarea></div><div class="modal-actions"><button class="btn" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="showToast('Site proposal added', 'The kiosk expansion concept was added to the operations queue.'); closeModal();">Save proposal</button></div>`);
-        return;
-      }
-      if (label === 'Request update') {
-        showToast('Model update requested', 'A refresh request was sent for the heat susceptibility model review queue.');
-        return;
-      }
-      if (label === 'Add module') {
-        showToast('Module drafted', 'A new education module placeholder was created in the training library.');
-        return;
-      }
-      if (label === 'Download') {
-        const row = this.closest('.module-row, .partner-row, .grant-row, .card, .quick-item') || this.parentElement;
-        const titleEl = row.querySelector('.module-title, .grant-title, .card-title, .quick-item-title') || row;
-        const title = (titleEl.textContent || 'resource').trim().toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
-        downloadTextFile((title || 'resource') + '.txt', 'Downloaded resource from HHRIC dashboard: ' + (titleEl.textContent || 'resource'));
-        showToast('Resource downloaded', 'A simple file was generated for this dashboard resource.');
-        return;
-      }
-      if (label === 'View module') {
-        openModal('Training module', `<div class="quick-list"><div class="quick-item"><div class="quick-item-title">Module summary</div><div class="quick-item-sub">This training block covers heat illness recognition, multilingual patient education, and referral pathways.</div></div><div class="quick-item"><div class="quick-item-title">Estimated completion time</div><div class="quick-item-sub">15 minutes with quiz checkpoint and printable handout.</div></div></div><div class="modal-actions"><button class="btn" onclick="closeModal()">Close</button></div>`);
-        return;
-      }
-      if (label === 'Add opportunity') {
-        showToast('Funding opportunity saved', 'The grant pipeline was updated with a new opportunity card.');
+        showToast('Live alerts', 'Showing all field alerts and biosensor response workflows.');
         return;
       }
       if (label === 'View case tracker') {
         nav('report');
-        showToast('Case tracker opened', 'Moved to the illness reporting and triage workspace.');
+        showToast('Case tracker', 'Moved to the illness reporting and triage workspace.');
         return;
       }
-      showToast(label, 'This control is now active.');
+
+      // ── DISPATCH / TRACK TEAM ───────────────────────────────────
+      if (label === 'Dispatch team') {
+        openModal('Dispatch outreach team', `
+          <div class="quick-list">
+            <div class="quick-item"><div class="quick-item-title">Alert: Participant #044 — Encanto</div><div class="quick-item-sub">Core temp 104.1°F · HR 122 bpm sustained 18 min. Closest available CHW team is 4 minutes out.</div></div>
+            <div class="quick-item"><div class="quick-item-title">Team assignment</div><div class="quick-item-sub">Team Gamma (Martinez + Ochoa) — 2 CHWs. Medical kit and cooling supplies on board.</div></div>
+            <div class="quick-item"><div class="quick-item-title">Protocol</div><div class="quick-item-sub">Assess vitals on arrival. If core temp remains above 103°F, activate transport to Kiosk K1 or nearest ED. Relay update to dashboard within 10 minutes.</div></div>
+          </div>
+          <div class="modal-actions">
+            <button class="btn" onclick="closeModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="
+              document.querySelectorAll('.btn-primary').forEach(b=>{ if(b.textContent.trim()==='Dispatch team'){b.textContent='Team en route';b.disabled=true;b.style.opacity='0.85';} });
+              showToast('Team dispatched', 'Team Gamma confirmed en route. ETA 4 min. Dashboard will auto-update on arrival check-in.');
+              closeModal();">Confirm dispatch</button>
+          </div>`);
+        return;
+      }
+      if (label === 'Track team') {
+        openModal('Team tracking — Alert #044', `
+          <div class="quick-list">
+            <div class="quick-item"><div class="quick-item-title">Team Gamma status</div><div class="quick-item-sub">En route · Last GPS ping 2 min ago · ETA 2 minutes to Encanto location.</div></div>
+            <div class="quick-item"><div class="quick-item-title">Participant #044 last reading</div><div class="quick-item-sub">Core temp 104.1°F · HR 122 bpm · No new reading in last 4 minutes (device may have been removed).</div></div>
+            <div class="quick-item"><div class="quick-item-title">Escalation options</div><div class="quick-item-sub">If no contact within 6 minutes, auto-escalation to EMS will trigger per the HHRIC heat stroke protocol.</div></div>
+          </div>
+          <div class="modal-actions">
+            <button class="btn" onclick="closeModal()">Close</button>
+            <button class="btn btn-primary" onclick="showToast('EMS pre-alert sent', 'EMS has been notified and is on standby. Team Gamma will confirm need on arrival.'); closeModal();">Pre-alert EMS</button>
+          </div>`);
+        return;
+      }
+
+      // ── TELECONSULT ─────────────────────────────────────────────
+      if (label === 'Join consult') {
+        openModal('Teleconsult — Participant #071', `
+          <div class="quick-list">
+            <div class="quick-item"><div class="quick-item-title">Maryvale Kiosk K2 — consult room active</div><div class="quick-item-sub">Patient connected. Nurse practitioner on call. Hydration coaching in progress. Device feed stable.</div></div>
+            <div class="quick-item"><div class="quick-item-title">Current vitals</div><div class="quick-item-sub">HR 108 bpm · Skin temp 101.8°F · Oral hydration started 6 min ago. Patient reports feeling less dizzy.</div></div>
+            <div class="quick-item"><div class="quick-item-title">Recommended next steps</div><div class="quick-item-sub">Continue remote evaluation. Confirm safe transport plan if symptoms persist. Repeat symptom check in 15 minutes. Document resolution or escalate.</div></div>
+          </div>
+          <div class="modal-actions">
+            <button class="btn" onclick="closeModal()">Close</button>
+            <button class="btn btn-primary" onclick="showToast('Consult joined', 'Telehealth room opened. Care note auto-drafted for this encounter.'); closeModal();">Launch consult room</button>
+          </div>`);
+        return;
+      }
+
+      // ── VIEW PROFILE ────────────────────────────────────────────
+      if (label === 'View profile') {
+        const row = this.closest('tr, .alert-row');
+        const text = row ? row.textContent : '';
+        if (text.includes('#044')) openPatientProfile('044');
+        else if (text.includes('#071')) openPatientProfile('071');
+        else openPatientProfile('109');
+        return;
+      }
+
+      // ── ENROLL PARTICIPANT ──────────────────────────────────────
+      if (label === 'Enroll participant') {
+        openModal('Enroll new participant', `
+          <div class="form-grid-2">
+            <div class="form-group"><label class="form-label">Participant ID</label><input class="form-control" placeholder="Auto-assigned on save" readonly style="opacity:0.6"></div>
+            <div class="form-group"><label class="form-label">Device ID</label><input class="form-control" placeholder="Scan armband barcode" id="enroll-device"></div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group"><label class="form-label">Age</label><input class="form-control" type="number" placeholder="Age" id="enroll-age"></div>
+            <div class="form-group"><label class="form-label">Population group</label>
+              <select class="form-control" id="enroll-group">
+                <option>Select…</option><option>Unhoused individual</option><option>Outdoor worker</option><option>Elderly (65+)</option><option>General public</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">Known risk factors</label><input class="form-control" placeholder="e.g. cardiac history, no AC, prior heat illness"></div>
+          <div class="form-group"><label class="form-label">Assigned CHW</label><input class="form-control" placeholder="CHW name or team"></div>
+          <div class="modal-actions">
+            <button class="btn" onclick="closeModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="
+              const grp = document.getElementById('enroll-group')?.value || 'General public';
+              const metric = document.querySelector('#page-wearables .metric-value');
+              if (metric && !isNaN(parseInt(metric.textContent))) metric.textContent = String(parseInt(metric.textContent)+1);
+              showToast('Participant enrolled', 'New wearable participant added to the cohort. Device will begin transmitting on pairing.');
+              closeModal();">Save enrollment</button>
+          </div>`);
+        return;
+      }
+
+      // ── EDIT THRESHOLDS ─────────────────────────────────────────
+      if (label === 'Edit') {
+        openModal('Edit alert thresholds', `
+          <div class="form-grid-3">
+            <div class="form-group"><label class="form-label">Heat stroke threshold</label><input class="form-control" value="≥ 103°F + HR ≥ 110"></div>
+            <div class="form-group"><label class="form-label">Heat exhaustion threshold</label><input class="form-control" value="≥ 101°F + HR ≥ 100"></div>
+            <div class="form-group"><label class="form-label">Early warning threshold</label><input class="form-control" value="≥ 100°F sustained 15 min"></div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group"><label class="form-label">Response timer (auto-escalate)</label><input class="form-control" value="10 min"></div>
+            <div class="form-group"><label class="form-label">Offline device alert</label><input class="form-control" value="No ping > 10 min"></div>
+          </div>
+          <div class="modal-actions">
+            <button class="btn" onclick="closeModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="showToast('Thresholds updated', 'Alert logic refreshed. New thresholds apply to all active devices immediately.'); closeModal();">Save thresholds</button>
+          </div>`);
+        return;
+      }
+
+      // ── ADD KIOSK SITE ──────────────────────────────────────────
+      if (label === 'Add site') {
+        openModal('Propose new cooling health oasis site', `
+          <div class="form-grid-2">
+            <div class="form-group"><label class="form-label">Site name</label><input class="form-control" placeholder="e.g. West Valley Transit Hub"></div>
+            <div class="form-group"><label class="form-label">Neighborhood / area</label><input class="form-control" placeholder="e.g. Laveen, Maryvale corridor"></div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group"><label class="form-label">Primary population served</label>
+              <select class="form-control"><option>Select…</option><option>Unhoused</option><option>Outdoor workers</option><option>Elderly</option><option>Mixed / general</option></select>
+            </div>
+            <div class="form-group"><label class="form-label">Target open date</label><input class="form-control" type="date"></div>
+          </div>
+          <div class="form-group"><label class="form-label">Site rationale</label><textarea class="form-control" placeholder="Describe heat burden, foot traffic, access gaps, and partnership opportunities."></textarea></div>
+          <div class="form-group"><label class="form-label">Power source</label>
+            <select class="form-control"><option>Solar + battery</option><option>Grid-connected</option><option>Mobile / self-contained</option></select>
+          </div>
+          <div class="modal-actions">
+            <button class="btn" onclick="closeModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="showToast('Site proposal saved', 'New kiosk site added to the operations expansion queue for review.'); closeModal();">Save proposal</button>
+          </div>`);
+        return;
+      }
+
+      // ── MODEL UPDATE ────────────────────────────────────────────
+      if (label === 'Request update') {
+        openModal('Request model update', `
+          <div class="quick-list">
+            <div class="quick-item"><div class="quick-item-title">Current model version</div><div class="quick-item-sub">Heat susceptibility score v1 beta · Last trained on Banner Health EHR data · AUC 0.84 on validation set.</div></div>
+            <div class="quick-item"><div class="quick-item-title">What a refresh will include</div><div class="quick-item-sub">New EHR encounters since last run · Updated housing and medication fields · Re-validation on held-out cohort.</div></div>
+          </div>
+          <div class="form-group" style="margin-top:14px"><label class="form-label">Reason for update request</label><textarea class="form-control" placeholder="e.g. New high-risk cohort enrolled, seasonal transition, model drift observed..."></textarea></div>
+          <div class="modal-actions">
+            <button class="btn" onclick="closeModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="showToast('Update requested', 'Model refresh queued. Estimated turnaround: 24–48 hours. Notify banner.health@hhric.arizona.edu on completion.'); closeModal();">Submit request</button>
+          </div>`);
+        return;
+      }
+
+      // ── ADD EDUCATION MODULE ────────────────────────────────────
+      if (label === 'Add module') {
+        openModal('Add education module', `
+          <div class="form-grid-2">
+            <div class="form-group"><label class="form-label">Module title</label><input class="form-control" placeholder="e.g. Heat safety for dialysis patients"></div>
+            <div class="form-group"><label class="form-label">Target audience</label>
+              <select class="form-control"><option>Community members</option><option>Community health workers</option><option>Medical students (COM–Phoenix)</option><option>Public health students (ZCPH)</option></select>
+            </div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group"><label class="form-label">Languages</label>
+              <select class="form-control"><option>English only</option><option>English + Spanish</option><option>English + Spanish + Navajo</option></select>
+            </div>
+            <div class="form-group"><label class="form-label">Format</label>
+              <select class="form-control"><option>PDF handout</option><option>CME module</option><option>CHW field guide</option><option>Video + quiz</option></select>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">Notes</label><textarea class="form-control" placeholder="Describe the module content, clinical basis, and any partner organizations involved."></textarea></div>
+          <div class="modal-actions">
+            <button class="btn" onclick="closeModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="showToast('Module drafted', 'New education module placeholder created in the training library.'); closeModal();">Create module</button>
+          </div>`);
+        return;
+      }
+
+      // ── DOWNLOAD ────────────────────────────────────────────────
+      if (label === 'Download') {
+        const row = this.closest('.module-row, .partner-row, .grant-row') || this.parentElement;
+        const titleEl = row.querySelector('.module-title, .grant-title, .p-pname') || row;
+        const resourceName = (titleEl.textContent || 'resource').trim();
+        const slug = resourceName.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
+        downloadTextFile(slug + '.txt',
+          'HHRIC Resource Export\n' +
+          'Generated: ' + new Date().toLocaleString() + '\n' +
+          'Resource: ' + resourceName + '\n\n' +
+          'This is a placeholder export generated from the HHRIC dashboard prototype.\n' +
+          'In the production system, this would download the full PDF or training document.');
+        showToast('Resource downloaded', '"' + resourceName.slice(0,40) + (resourceName.length>40?'…':'') + '" saved to downloads.');
+        return;
+      }
+
+      // ── VIEW MODULE ─────────────────────────────────────────────
+      if (label === 'View module') {
+        const row = this.closest('.module-row') || this.parentElement;
+        const titleEl = row.querySelector('.module-title') || row;
+        const title = (titleEl.textContent || 'Training module').trim();
+        openModal(title, `
+          <div class="quick-list">
+            <div class="quick-item"><div class="quick-item-title">Module overview</div><div class="quick-item-sub">This module covers recognition of heat-related illness in clinical and community settings, evidence-based triage, and referral pathways specific to the Maricopa County heat burden context.</div></div>
+            <div class="quick-item"><div class="quick-item-title">Learning objectives</div><div class="quick-item-sub">1. Identify heat exhaustion vs. heat stroke. 2. Apply HHRIC triage thresholds. 3. Coordinate with CHW and kiosk care pathways. 4. Document in shared care plan.</div></div>
+            <div class="quick-item"><div class="quick-item-title">Estimated time</div><div class="quick-item-sub">20–30 minutes including quiz checkpoint and printable handout. CME credit pending approval for COM–Phoenix.</div></div>
+          </div>
+          <div class="modal-actions">
+            <button class="btn" onclick="closeModal()">Close</button>
+            <button class="btn btn-primary" onclick="showToast('Module launched', 'Opening full training module. Progress will be saved to your HHRIC profile.'); closeModal();">Launch module</button>
+          </div>`);
+        return;
+      }
+
+      // ── ADD FUNDING OPPORTUNITY ─────────────────────────────────
+      if (label === 'Add opportunity') {
+        openModal('Add funding opportunity', `
+          <div class="form-grid-2">
+            <div class="form-group"><label class="form-label">Funder / program name</label><input class="form-control" placeholder="e.g. NIH R01, CDC BRACE, Robert Wood Johnson"></div>
+            <div class="form-group"><label class="form-label">Estimated award</label><input class="form-control" placeholder="e.g. $1.2M over 3 years"></div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group"><label class="form-label">Application deadline</label><input class="form-control" type="date"></div>
+            <div class="form-group"><label class="form-label">Stage</label>
+              <select class="form-control"><option>Scoping</option><option>Exploratory</option><option>Proposal in development</option><option>Submitted</option><option>Awarded</option></select>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">Relevance to HHRIC pillars</label><textarea class="form-control" placeholder="Describe which innovation pillars this would fund and how it aligns with the consortium's goals."></textarea></div>
+          <div class="modal-actions">
+            <button class="btn" onclick="closeModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="showToast('Opportunity added', 'New grant opportunity added to the funding pipeline.'); closeModal();">Save opportunity</button>
+          </div>`);
+        return;
+      }
+
+      // ── FALLBACK ─────────────────────────────────────────────────
+      showToast(label, 'Action recorded.');
     });
   });
 }
@@ -2195,14 +2596,20 @@ function initOverviewMap() {
   });
 
   [
-    { label: 'Core temp spike alert', coords: [33.459, -112.089], severity: 'Immediate follow-up' },
-    { label: 'Hydration non-response', coords: [33.404, -112.047], severity: 'CHW outreach queued' },
-    { label: 'Repeat heat symptom report', coords: [33.491, -112.012], severity: 'Telemed escalation suggested' }
+    { label: 'Core temp spike alert', patientKey: '044', patientName: 'Marcus T.', coords: [33.459, -112.089], severity: 'Immediate follow-up' },
+    { label: 'Hydration non-response', patientKey: '023', patientName: 'Daniel L.', coords: [33.404, -112.047], severity: 'CHW outreach queued' },
+    { label: 'Repeat heat symptom report', patientKey: '071', patientName: 'Rosa G.', coords: [33.491, -112.012], severity: 'Telemed escalation suggested' }
   ].forEach(alert => {
-    L.marker(alert.coords, { icon: pulseIcon }).addTo(map).bindPopup(
-      '<div class="popup-title">' + alert.label + '</div>' +
-      '<div class="popup-sub">' + alert.severity + '</div>'
+    const patientMarker = L.marker(alert.coords, { icon: pulseIcon, title: alert.patientName }).addTo(map);
+    patientMarker.bindTooltip(alert.patientName + ' · ' + alert.label, { direction: 'top', offset: [0, -10] });
+    patientMarker.bindPopup(
+      '<div class="popup-title">' + alert.patientName + '</div>' +
+      '<div class="popup-sub">' + alert.label + '<br>' + alert.severity + '<br><strong>Click marker to open patient profile</strong></div>'
     );
+    patientMarker.on('click', () => {
+      patientMarker.closePopup();
+      openPatientProfile(alert.patientKey);
+    });
   });
 
   window.__overviewMap = map;
@@ -2219,8 +2626,177 @@ function initOverviewMap() {
 
 initOverviewMap();
 buildButtonInteractions();
+setupPatientProfileClicks();
 
 calcScore();
 </script>
+
+<script>
+const outreachTeams = {
+  "OT-1": {
+    id: "OT-1",
+    vehicle: "Mobile Outreach Unit 1",
+    status: "En route to hydration non-response",
+    eta: "7 minutes",
+    location: "Central Phoenix corridor",
+    members: [
+      {
+        name: "Luis Ramirez",
+        role: "Community Health Worker",
+        phone: "(602) 555-0198",
+        languages: "English, Spanish",
+        photo: "https://randomuser.me/api/portraits/men/32.jpg",
+        skills: "Field assessment, hydration support, shelter navigation",
+        note: "Lead responder for west and central Phoenix heat outreach."
+      },
+      {
+        name: "Aisha Patel",
+        role: "Case Manager",
+        phone: "(602) 555-0142",
+        languages: "English",
+        photo: "https://randomuser.me/api/portraits/women/44.jpg",
+        skills: "Benefits navigation, follow-up scheduling, resource coordination",
+        note: "Coordinates post-visit follow-up and kiosk referrals."
+      }
+    ]
+  },
+  "OT-2": {
+    id: "OT-2",
+    vehicle: "Mobile Outreach Unit 2",
+    status: "Cooling kit delivery",
+    eta: "12 minutes",
+    location: "Maryvale",
+    members: [
+      {
+        name: "Jordan Lee",
+        role: "Paramedic Liaison",
+        phone: "(602) 555-0177",
+        languages: "English",
+        photo: "https://randomuser.me/api/portraits/women/68.jpg",
+        skills: "Vital signs, escalation decisions, EMS handoff",
+        note: "Reviews wearable alerts and decides when EMS escalation is needed."
+      },
+      {
+        name: "Carlos Mendoza",
+        role: "Outreach Driver",
+        phone: "(602) 555-0184",
+        languages: "English, Spanish",
+        photo: "https://randomuser.me/api/portraits/men/41.jpg",
+        skills: "Route planning, supply delivery, participant check-ins",
+        note: "Maintains mobile unit supplies and transport readiness."
+      }
+    ]
+  }
+};
+
+function openOutreachTeamProfile(teamId) {
+  const team = outreachTeams[teamId];
+  if (!team) return;
+
+  const body = `
+    <div class="team-profile-grid">
+      <div>
+        <img class="team-photo" src="${team.members[0].photo}" alt="${team.members[0].name}">
+        <div style="font-size:10px;color:var(--text3);margin-top:6px;text-align:center;">Demo placeholder photo</div>
+      </div>
+      <div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+          <span class="chip chip-accent">${team.id}</span>
+          <span class="chip chip-blue">${team.vehicle}</span>
+          <span class="chip chip-amber">${team.eta}</span>
+        </div>
+        <div class="team-detail-card">
+          <div class="team-detail-title">Current assignment</div>
+          <div style="font-size:14px;font-weight:600;">${team.status}</div>
+          <div style="font-size:12px;color:var(--text2);margin-top:4px;">${team.location}</div>
+        </div>
+        <div class="team-detail-card">
+          <div class="team-detail-title">Team members</div>
+          ${team.members.map((m, i) => `
+            <div class="team-member-row" onclick="showTeamMember('${teamId}', ${i})">
+              <img src="${m.photo}" alt="${m.name}">
+              <div>
+                <div style="font-size:13px;font-weight:700;">${m.name}</div>
+                <div style="font-size:12px;color:var(--text2);">${m.role} · ${m.languages}</div>
+              </div>
+            </div>
+          `).join("")}
+        </div>
+        <div id="team-member-detail" class="team-detail-card"></div>
+      </div>
+    </div>
+  `;
+
+  const modalTitle = document.querySelector("#app-modal .modal-title") || document.querySelector(".modal-title");
+  const modalBody = document.querySelector("#app-modal .modal-body") || document.querySelector(".modal-body");
+  const modal = document.querySelector("#app-modal") || document.querySelector(".modal-backdrop");
+
+  if (modalTitle && modalBody && modal) {
+    modalTitle.textContent = "Outreach team profile";
+    modalBody.innerHTML = body;
+    modal.classList.add("show");
+    showTeamMember(teamId, 0);
+    return;
+  }
+
+  alert(`${team.vehicle}\n${team.status}\nETA: ${team.eta}`);
+}
+
+function showTeamMember(teamId, idx) {
+  const m = outreachTeams[teamId].members[idx];
+  const box = document.getElementById("team-member-detail");
+  if (!box) return;
+  box.innerHTML = `
+    <div class="team-detail-title">Selected worker profile</div>
+    <div style="display:flex;gap:12px;align-items:center;margin-bottom:10px;">
+      <img src="${m.photo}" alt="${m.name}" style="width:58px;height:58px;border-radius:50%;object-fit:cover;">
+      <div>
+        <div style="font-size:15px;font-weight:700;">${m.name}</div>
+        <div style="font-size:12px;color:var(--text2);">${m.role}</div>
+      </div>
+    </div>
+    <div style="font-size:12px;line-height:1.6;">
+      <strong>Phone:</strong> ${m.phone}<br>
+      <strong>Languages:</strong> ${m.languages}<br>
+      <strong>Skills:</strong> ${m.skills}<br>
+      <strong>Note:</strong> ${m.note}
+    </div>
+  `;
+}
+
+function addOutreachVehicleMarkersWhenReady() {
+  if (typeof L === "undefined") return;
+  const map =
+    window.overviewMap ||
+    window.map ||
+    Object.values(window).find(v => v && v.eachLayer && v.setView);
+
+  if (!map || map.__outreachVehiclesAdded) return;
+  map.__outreachVehiclesAdded = true;
+
+  const carIcon = L.divIcon({
+    className: "custom-div-icon",
+    html: '<div class="outreach-car-marker">🚐</div>',
+    iconSize: [34, 34],
+    iconAnchor: [17, 17],
+    popupAnchor: [0, -17]
+  });
+
+  [
+    { id: "OT-1", lat: 33.475, lng: -112.095, label: "Outreach Unit 1" },
+    { id: "OT-2", lat: 33.493, lng: -112.160, label: "Outreach Unit 2" }
+  ].forEach(unit => {
+    L.marker([unit.lat, unit.lng], { icon: carIcon })
+      .addTo(map)
+      .bindPopup(`<div class="popup-title">${unit.label}</div><div class="popup-sub">Mobile outreach team<br><button class="btn btn-sm" style="margin-top:8px;" onclick="openOutreachTeamProfile('${unit.id}')">View team profile</button></div>`);
+  });
+}
+
+setTimeout(addOutreachVehicleMarkersWhenReady, 900);
+setTimeout(addOutreachVehicleMarkersWhenReady, 1800);
+setTimeout(addOutreachVehicleMarkersWhenReady, 3000);
+document.addEventListener("DOMContentLoaded", addOutreachVehicleMarkersWhenReady);
+</script>
+
 </body>
 </html>
